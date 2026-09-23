@@ -35,7 +35,7 @@ export default function Menu() {
             OUR FAVORITE PIZZAS
           </h2>
           <p className="mt-4 max-w-xl text-muted">
-            Built on rested dough and a blistering oven. Filter by style, pick a size, and add it to your order — prices shown in Pakistani Rupees.
+            Built on rested dough and a blistering oven. Filter by style, pick a size, and add it to your order — prices shown in Swedish kronor (SEK).
           </p>
         </div>
 

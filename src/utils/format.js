@@ -1,7 +1,11 @@
-/** Format a number as Pakistani Rupees, e.g. 1099 → "Rs. 1,099" */
+/** Format a number as Swedish kronor, e.g. 109 → "109 kr" */
 export function formatPrice(amount) {
   const value = Number(amount) || 0;
-  return `Rs. ${value.toLocaleString("en-PK")}`;
+  return new Intl.NumberFormat("sv-SE", {
+    style: "currency",
+    currency: "SEK",
+    maximumFractionDigits: 0,
+  }).format(value);
 }
 
 export function createCartId() {

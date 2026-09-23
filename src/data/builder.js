@@ -1,6 +1,6 @@
 /**
  * ============================================
- * PIZZA BUILDER OPTIONS — prices in PKR
+ * PIZZA BUILDER OPTIONS — prices in SEK
  * ============================================
  * Change sizes, crusts, sauces, cheeses, and toppings here.
  * The live total on the page is calculated from these values.

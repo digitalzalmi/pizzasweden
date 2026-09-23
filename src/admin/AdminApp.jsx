@@ -264,7 +264,7 @@ function MenuPanel({ draft, setDraft, upload }) {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="font-display text-3xl">Menu & prices</h1>
-          <p className="mt-1 text-sm text-muted">Add pizzas, swap photos, and set small / medium / large prices in PKR.</p>
+          <p className="mt-1 text-sm text-muted">Add pizzas, swap photos, and set small / medium / large prices in SEK.</p>
         </div>
         <button type="button" className="btn btn-ink" onClick={addPizza}>
           Add pizza
@@ -311,7 +311,7 @@ function MenuPanel({ draft, setDraft, upload }) {
                   />
                 </label>
                 <Field
-                  label="Small price (PKR)"
+                  label="Small price (SEK)"
                   type="number"
                   value={pizza.sizes?.small ?? ""}
                   onChange={(value) =>
@@ -322,7 +322,7 @@ function MenuPanel({ draft, setDraft, upload }) {
                   }
                 />
                 <Field
-                  label="Medium price (PKR)"
+                  label="Medium price (SEK)"
                   type="number"
                   value={pizza.sizes?.medium ?? pizza.price}
                   onChange={(value) => {
@@ -334,7 +334,7 @@ function MenuPanel({ draft, setDraft, upload }) {
                   }}
                 />
                 <Field
-                  label="Large price (PKR)"
+                  label="Large price (SEK)"
                   type="number"
                   value={pizza.sizes?.large ?? ""}
                   onChange={(value) => updatePizza(pizza.id, { sizes: { ...pizza.sizes, large: Number(value) || 0 } })}
@@ -512,8 +512,8 @@ function OffersPanel({ draft, setDraft, upload }) {
         <Field label="Title" value={offer.title} onChange={(value) => update({ title: value })} />
         <Field label="Headline" value={offer.headline} onChange={(value) => update({ headline: value })} />
         <Field label="Button text" value={offer.cta} onChange={(value) => update({ cta: value })} />
-        <Field label="Deal price (PKR)" type="number" value={offer.price} onChange={(value) => update({ price: Number(value) || 0 })} />
-        <Field label="Original price (PKR)" type="number" value={offer.originalPrice} onChange={(value) => update({ originalPrice: Number(value) || 0 })} />
+        <Field label="Deal price (SEK)" type="number" value={offer.price} onChange={(value) => update({ price: Number(value) || 0 })} />
+        <Field label="Original price (SEK)" type="number" value={offer.originalPrice} onChange={(value) => update({ originalPrice: Number(value) || 0 })} />
         <label className="md:col-span-2 block text-sm font-semibold">
           Description
           <textarea rows={3} className="mt-2 w-full rounded-xl border border-line bg-cream px-3 py-2.5" value={offer.description} onChange={(event) => update({ description: event.target.value })} />
@@ -737,7 +737,7 @@ function BuilderPanel({ draft, setDraft }) {
             {draft.builderOptions[key].map((item, index) => (
               <li key={item.id} className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-cream p-3">
                 <Field label="Label" value={item.label} onChange={(value) => updateList(key, index, { label: value })} />
-                <Field label="Price (PKR)" type="number" value={item.price} onChange={(value) => updateList(key, index, { price: Number(value) || 0 })} />
+                <Field label="Price (SEK)" type="number" value={item.price} onChange={(value) => updateList(key, index, { price: Number(value) || 0 })} />
               </li>
             ))}
           </ul>

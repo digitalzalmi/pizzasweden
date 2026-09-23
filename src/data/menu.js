@@ -5,7 +5,7 @@
  * Fields you can edit on each pizza:
  * - name, description, category
  * - price (medium default, used if a size is missing)
- * - sizes.small / sizes.medium / sizes.large  (PKR)
+ * - sizes.small / sizes.medium / sizes.large  (SEK)
  * - image (URL)
  * - badge  ("Popular", "New", "Chef's Pick", "Spicy", or "")
  * - ingredients (array of strings)
