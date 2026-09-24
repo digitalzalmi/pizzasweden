@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { createCartId } from "../utils/format";
 
 const CartContext = createContext(null);
@@ -22,16 +22,16 @@ export function CartProvider({ children }) {
     [items],
   );
 
-  function openCart(nextStep = "cart") {
+  const openCart = useCallback((nextStep = "cart") => {
     setStep(nextStep);
     setIsOpen(true);
-  }
+  }, []);
 
-  function closeCart() {
+  const closeCart = useCallback(() => {
     setIsOpen(false);
-  }
+  }, []);
 
-  function addItem(item) {
+  const addItem = useCallback((item) => {
     setItems((current) => {
       const match = current.find(
         (row) =>
@@ -58,53 +58,79 @@ export function CartProvider({ children }) {
     });
     setStep("cart");
     setIsOpen(true);
-  }
+  }, []);
 
-  function updateQuantity(cartId, quantity) {
+  const updateQuantity = useCallback((cartId, quantity) => {
     setItems((current) => {
       if (quantity < 1) return current.filter((row) => row.cartId !== cartId);
       return current.map((row) => (row.cartId === cartId ? { ...row, quantity } : row));
     });
-  }
+  }, []);
 
-  function removeItem(cartId) {
+  const removeItem = useCallback((cartId) => {
     setItems((current) => current.filter((row) => row.cartId !== cartId));
-  }
+  }, []);
 
-  function clearCart() {
+  const clearCart = useCallback(() => {
     setItems([]);
-  }
+  }, []);
 
-  function resetOrder() {
+  const updateCustomer = useCallback((field, value) => {
+    setCustomer((current) => ({ ...current, [field]: value }));
+  }, []);
+
+  const resetOrder = useCallback(() => {
     setItems([]);
     setStep("cart");
     setCustomer({ name: "", phone: "", address: "" });
     setIsOpen(false);
-  }
+  }, []);
 
-  const value = {
-    items,
-    isOpen,
-    step,
-    setStep,
-    searchOpen,
-    setSearchOpen,
-    menuQuery,
-    setMenuQuery,
-    highlightId,
-    setHighlightId,
-    customer,
-    setCustomer,
-    subtotal,
-    count,
-    openCart,
-    closeCart,
-    addItem,
-    updateQuantity,
-    removeItem,
-    clearCart,
-    resetOrder,
-  };
+  const value = useMemo(
+    () => ({
+      items,
+      isOpen,
+      step,
+      setStep,
+      searchOpen,
+      setSearchOpen,
+      menuQuery,
+      setMenuQuery,
+      highlightId,
+      setHighlightId,
+      customer,
+      setCustomer,
+      updateCustomer,
+      subtotal,
+      count,
+      openCart,
+      closeCart,
+      addItem,
+      updateQuantity,
+      removeItem,
+      clearCart,
+      resetOrder,
+    }),
+    [
+      items,
+      isOpen,
+      step,
+      searchOpen,
+      menuQuery,
+      highlightId,
+      customer,
+      updateCustomer,
+      subtotal,
+      count,
+      openCart,
+      closeCart,
+      addItem,
+      updateQuantity,
+      removeItem,
+      clearCart,
+      resetOrder,
+    ],
+  );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

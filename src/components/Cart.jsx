@@ -18,21 +18,32 @@ export default function Cart() {
     step,
     setStep,
     customer,
-    setCustomer,
+    updateCustomer,
     resetOrder,
     count,
     openCart,
   } = useCart();
   const panelRef = useRef(null);
+  const wasOpenRef = useRef(false);
 
   useEffect(() => {
-    if (!isOpen) return undefined;
+    if (!isOpen) {
+      wasOpenRef.current = false;
+      return undefined;
+    }
+
     const onKey = (event) => {
       if (event.key === "Escape") closeCart();
     };
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    panelRef.current?.focus();
+
+    // Focus the panel only when it first opens — not on every keystroke/re-render.
+    if (!wasOpenRef.current) {
+      panelRef.current?.focus();
+      wasOpenRef.current = true;
+    }
+
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
@@ -189,8 +200,9 @@ export default function Cart() {
                   Customer Name
                   <input
                     required
+                    name="customerName"
                     value={customer.name}
-                    onChange={(event) => setCustomer({ ...customer, name: event.target.value })}
+                    onChange={(event) => updateCustomer("name", event.target.value)}
                     className="mt-2 w-full rounded-xl border border-line bg-cream px-3 py-3 outline-none focus:border-gold"
                     autoComplete="name"
                   />
@@ -199,8 +211,9 @@ export default function Cart() {
                   Phone
                   <input
                     required
+                    name="customerPhone"
                     value={customer.phone}
-                    onChange={(event) => setCustomer({ ...customer, phone: event.target.value })}
+                    onChange={(event) => updateCustomer("phone", event.target.value)}
                     className="mt-2 w-full rounded-xl border border-line bg-cream px-3 py-3 outline-none focus:border-gold"
                     autoComplete="tel"
                     inputMode="tel"
@@ -210,9 +223,10 @@ export default function Cart() {
                   Delivery Address
                   <textarea
                     required
+                    name="customerAddress"
                     rows={3}
                     value={customer.address}
-                    onChange={(event) => setCustomer({ ...customer, address: event.target.value })}
+                    onChange={(event) => updateCustomer("address", event.target.value)}
                     className="mt-2 w-full rounded-xl border border-line bg-cream px-3 py-3 outline-none focus:border-gold"
                     autoComplete="street-address"
                   />
