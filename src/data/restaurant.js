@@ -4,15 +4,11 @@
  * ============================================
  * Edit this file to update:
  * - Brand name
- * - Phone, email, WhatsApp number
+ * - Phone, email
  * - Address
  * - Opening hours
- * - Social media links
  * - About text
  * - Hero copy
- *
- * WhatsApp number must be digits only with country code,
- * no + or spaces. Example: 923001234567
  */
 export const restaurant = {
   name: "PIZZA HOUSE",
@@ -38,18 +34,11 @@ export const restaurant = {
   phoneDisplay: "+92 XXX XXXXXXX",
   phoneTel: "+92XXXXXXXXXX",
   email: "hello@pizzahouse.pk",
-  whatsapp: "92XXXXXXXXXXX",
   hoursTitle: "Monday – Sunday",
   hoursTime: "11:00 AM – 12:00 AM",
   hoursNote: "Kitchen last call 11:30 PM",
   mapsQuery: "Main Market, Mardan, Khyber Pakhtunkhwa, Pakistan",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Main+Market+Mardan+Khyber+Pakhtunkhwa",
-  social: {
-    facebook: "https://facebook.com/pizzahouse",
-    instagram: "https://instagram.com/pizzahouse",
-    tiktok: "https://www.tiktok.com/@pizzahouse",
-    whatsapp: "https://wa.me/92XXXXXXXXXXX",
-  },
   footerBlurb:
     "Handmade pizza from Main Market, Mardan. Fresh dough, a hot oven, and orders that actually arrive hot.",
   copyright: "© 2026 Pizza House. All rights reserved.",

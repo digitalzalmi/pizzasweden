@@ -575,7 +575,7 @@ function ShopPanel({ draft, setDraft }) {
     <section className="space-y-10">
       <div>
         <h1 className="font-display text-3xl">Shop details</h1>
-        <p className="mt-1 text-sm text-muted">Name, phone, WhatsApp, hours, address, and about text.</p>
+        <p className="mt-1 text-sm text-muted">Name, phone, hours, address, and about text.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Brand name" value={restaurant.name} onChange={(value) => update({ name: value })} />
@@ -583,12 +583,15 @@ function ShopPanel({ draft, setDraft }) {
         <Field label="Hero label" value={restaurant.heroLabel} onChange={(value) => update({ heroLabel: value })} />
         <Field label="Tagline" textarea value={restaurant.tagline} onChange={(value) => update({ tagline: value })} />
         <Field label="Hero support text" textarea value={restaurant.heroSupport} onChange={(value) => update({ heroSupport: value })} />
-        <Field label="Phone shown on site" value={restaurant.phoneDisplay} onChange={(value) => update({ phoneDisplay: value })} />
-        <Field label="Phone tel link" value={restaurant.phoneTel} onChange={(value) => update({ phoneTel: value })} />
         <Field
-          label="WhatsApp number (digits only, with country code)"
-          value={restaurant.whatsapp}
-          onChange={(value) => update({ whatsapp: value.replace(/[^\d]/g, "") })}
+          label="Phone"
+          value={restaurant.phoneDisplay}
+          onChange={(value) =>
+            update({
+              phoneDisplay: value,
+              phoneTel: value.replace(/[^\d+]/g, ""),
+            })
+          }
         />
         <Field label="Email" value={restaurant.email} onChange={(value) => update({ email: value })} />
         <Field label="Address line 1" value={restaurant.addressLine1} onChange={(value) => update({ addressLine1: value })} />

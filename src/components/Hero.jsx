@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { FiPhone, FiMapPin, FiClock } from "react-icons/fi";
 import { useContent } from "../context/ContentContext";
+import { phoneHref } from "../utils/format";
 import ImageSlider from "./ImageSlider";
 
 export default function Hero() {
   const { restaurant, heroSlides } = useContent();
   const [offset, setOffset] = useState(0);
+  const callHref = phoneHref(restaurant.phoneDisplay || restaurant.phoneTel);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -66,7 +68,7 @@ export default function Hero() {
               <div className="min-w-0">
                 <dt className="hidden text-[0.58rem] tracking-[0.14em] text-cream/50 uppercase sm:block">Call</dt>
                 <dd className="truncate">
-                  <a className="text-[0.7rem] font-semibold text-cream no-underline hover:text-gold sm:text-sm" href={`tel:${restaurant.phoneTel}`}>
+                  <a className="text-[0.7rem] font-semibold text-cream no-underline hover:text-gold sm:text-sm" href={callHref}>
                     {restaurant.phoneDisplay}
                   </a>
                 </dd>

@@ -7,3 +7,9 @@ export function formatPrice(amount) {
     maximumFractionDigits: 0,
   }).format(value);
 }
+
+/** Build a tel: href from a display phone number. */
+export function phoneHref(phone) {
+  const cleaned = String(phone || "").replace(/[^\d+]/g, "");
+  return cleaned ? `tel:${cleaned}` : "#";
+}

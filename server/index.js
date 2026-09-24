@@ -192,10 +192,9 @@ function mergeContent(base, extra) {
 
 function syncDerivedFields(content) {
   const restaurant = content.restaurant || {};
-  const digits = String(restaurant.whatsapp || "").replace(/[^\d]/g, "");
-  restaurant.whatsapp = digits;
-  restaurant.social = restaurant.social || {};
-  if (digits) restaurant.social.whatsapp = `https://wa.me/${digits}`;
+  const phone = restaurant.phoneDisplay || restaurant.phoneTel || "";
+  restaurant.phoneDisplay = phone;
+  restaurant.phoneTel = String(phone).replace(/[^\d+]/g, "");
   content.restaurant = restaurant;
 }
 

@@ -1,9 +1,11 @@
 import { FiMapPin, FiPhone, FiMail, FiClock } from "react-icons/fi";
 import { useContent } from "../context/ContentContext";
+import { phoneHref } from "../utils/format";
 import SectionReveal from "./SectionReveal";
 
 export default function Contact() {
   const { restaurant, images } = useContent();
+  const callHref = phoneHref(restaurant.phoneDisplay || restaurant.phoneTel);
   return (
     <SectionReveal id="contact" className="scroll-mt-20 bg-paper py-10 sm:py-14" variant="up" aria-labelledby="contact-heading">
       <div className="container-site grid overflow-hidden rounded-xl bg-cream sm:rounded-2xl lg:grid-cols-2">
@@ -29,7 +31,7 @@ export default function Contact() {
               <div>
                 <dt className="text-[0.65rem] tracking-[0.14em] text-muted uppercase">Phone</dt>
                 <dd>
-                  <a className="text-ink no-underline hover:text-tomato" href={`tel:${restaurant.phoneTel}`}>
+                  <a className="text-ink no-underline hover:text-tomato" href={callHref}>
                     {restaurant.phoneDisplay}
                   </a>
                 </dd>
@@ -63,7 +65,7 @@ export default function Contact() {
             <a className="btn btn-gold no-underline" href={`mailto:${restaurant.email}`}>
               Contact
             </a>
-            <a className="btn btn-line no-underline" href={`tel:${restaurant.phoneTel}`}>
+            <a className="btn btn-line no-underline" href={callHref}>
               Call
             </a>
           </div>

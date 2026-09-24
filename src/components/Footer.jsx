@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useContent } from "../context/ContentContext";
+import { phoneHref } from "../utils/format";
 import PizzaLogo from "./PizzaLogo";
 
 export default function Footer() {
   const { restaurant } = useContent();
+  const callHref = phoneHref(restaurant.phoneDisplay || restaurant.phoneTel);
   return (
     <footer className="bg-ink text-cream">
       <div className="container-site grid gap-6 py-9 sm:gap-8 sm:py-12 md:grid-cols-2 lg:grid-cols-4">
@@ -46,7 +48,7 @@ export default function Footer() {
             {restaurant.addressLine2}
           </p>
           <p className="mt-3 text-sm">
-            <a className="text-cream/75 no-underline hover:text-gold" href={`tel:${restaurant.phoneTel}`}>
+            <a className="text-cream/75 no-underline hover:text-gold" href={callHref}>
               {restaurant.phoneDisplay}
             </a>
             <br />
