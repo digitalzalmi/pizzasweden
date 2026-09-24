@@ -7,26 +7,28 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import { getDefaultContent } from "../src/data/siteContent.js";
+import { normalizeContent } from "../shared/content.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const isDev = process.argv.includes("--dev");
 const port = Number(process.env.PORT) || 5173;
 const dataDir = join(root, "data");
-const uploadsDir = join(dataDir, "uploads");
-const contentPath = join(dataDir, "content.json");
+const uploadsDir = join(root, "public", "uploads");
+const contentPath = join(root, "public", "content.json");
 const adminPath = join(dataDir, "admin.json");
 const cookieName = "ph_admin";
 const sessionDays = 7;
 
 loadEnv(join(root, ".env"));
 mkdirSync(uploadsDir, { recursive: true });
+mkdirSync(dataDir, { recursive: true });
 
 const sessions = new Map();
 const loginAttempts = new Map();
 
 const app = express();
 app.disable("x-powered-by");
-app.use(express.json({ limit: "4mb" }));
+app.use(express.json({ limit: "12mb" }));
 app.use(cookieParser());
 app.use("/uploads", express.static(uploadsDir));
 
@@ -119,8 +121,7 @@ app.put("/api/content", (req, res) => {
     res.status(400).json({ error: "Invalid content." });
     return;
   }
-  const content = mergeContent(getDefaultContent(), incoming);
-  syncDerivedFields(content);
+  const content = normalizeContent(incoming);
   writeJson(contentPath, content);
   res.json({ content });
 });
@@ -130,6 +131,29 @@ app.post("/api/upload", (req, res) => {
     res.status(401).json({ error: "Please log in." });
     return;
   }
+
+  if (req.is("application/json") && req.body?.data) {
+    try {
+      const ext = safeExt(req.body.name || "upload.jpg");
+      const allowed = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+      if (!allowed.includes(ext)) {
+        res.status(400).json({ error: "Please upload a JPG, PNG, WebP, or GIF image." });
+        return;
+      }
+      const buffer = Buffer.from(String(req.body.data), "base64");
+      if (buffer.length > 8 * 1024 * 1024) {
+        res.status(400).json({ error: "Image must be under 8 MB." });
+        return;
+      }
+      const filename = `${Date.now()}-${randomBytes(4).toString("hex")}${ext === ".jpeg" ? ".jpg" : ext}`;
+      writeFileSync(join(uploadsDir, filename), buffer);
+      res.json({ url: `/uploads/${filename}` });
+    } catch (error) {
+      res.status(400).json({ error: error.message || "Upload failed." });
+    }
+    return;
+  }
+
   upload.single("image")(req, res, (error) => {
     if (error) {
       res.status(400).json({ error: error.message || "Upload failed." });
@@ -169,33 +193,12 @@ httpServer.listen(port, () => {
 });
 
 function readContent() {
-  const defaults = getDefaultContent();
-  if (!existsSync(contentPath)) return defaults;
+  if (!existsSync(contentPath)) return getDefaultContent();
   try {
-    return mergeContent(defaults, JSON.parse(readFileSync(contentPath, "utf8")));
+    return normalizeContent(JSON.parse(readFileSync(contentPath, "utf8")));
   } catch {
-    return defaults;
+    return getDefaultContent();
   }
-}
-
-function mergeContent(base, extra) {
-  if (Array.isArray(extra)) return extra;
-  if (extra && typeof extra === "object" && base && typeof base === "object" && !Array.isArray(base)) {
-    const out = { ...base };
-    for (const key of Object.keys(extra)) {
-      out[key] = mergeContent(base[key], extra[key]);
-    }
-    return out;
-  }
-  return extra ?? base;
-}
-
-function syncDerivedFields(content) {
-  const restaurant = content.restaurant || {};
-  const phone = restaurant.phoneDisplay || restaurant.phoneTel || "";
-  restaurant.phoneDisplay = phone;
-  restaurant.phoneTel = String(phone).replace(/[^\d+]/g, "");
-  content.restaurant = restaurant;
 }
 
 function getSession(req) {

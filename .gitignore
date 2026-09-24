@@ -16,6 +16,8 @@ data/content.json
 data/admin.json
 data/uploads/*
 !data/uploads/.gitkeep
+public/uploads/*
+!public/uploads/.gitkeep
 
 # Editor directories and files
 .vscode/*

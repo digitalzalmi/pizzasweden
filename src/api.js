@@ -4,11 +4,23 @@ async function request(path, options = {}) {
     headers["Content-Type"] = "application/json";
   }
 
-  const response = await fetch(path, {
-    credentials: "include",
-    ...options,
-    headers,
-  });
+  let response;
+  try {
+    response = await fetch(path, {
+      credentials: "include",
+      ...options,
+      headers,
+    });
+  } catch {
+    throw new Error("Could not reach the server. Admin saves need the API to be available.");
+  }
+
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    throw new Error(
+      "The save API is not available on this host yet. After the latest deploy, add GITHUB_TOKEN in Vercel env settings.",
+    );
+  }
 
   const data = await response.json().catch(() => ({}));
   if (!response.ok) {
@@ -17,8 +29,15 @@ async function request(path, options = {}) {
   return data;
 }
 
-export function fetchContent() {
-  return request("/api/content");
+export async function fetchContent() {
+  try {
+    return await request("/api/content");
+  } catch {
+    const response = await fetch("/content.json", { credentials: "omit" });
+    if (!response.ok) throw new Error("Could not load website content.");
+    const content = await response.json();
+    return { content };
+  }
 }
 
 export function saveContent(content) {
@@ -51,11 +70,17 @@ export function changePassword(current, next) {
 }
 
 export async function uploadImage(file) {
-  const body = new FormData();
-  body.append("image", file);
+  const buffer = await file.arrayBuffer();
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += 1) binary += String.fromCharCode(bytes[i]);
   const data = await request("/api/upload", {
     method: "POST",
-    body,
+    body: JSON.stringify({
+      name: file.name,
+      type: file.type,
+      data: btoa(binary),
+    }),
   });
   return data.url;
 }

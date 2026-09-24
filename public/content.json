@@ -1,0 +1,557 @@
+{
+  "restaurant": {
+    "name": "PIZZA HOUSE",
+    "shortName": "Pizza House",
+    "tagline": "GOOD FOOD.\nGOOD MOOD.",
+    "heroLabel": "FRESH FROM THE OVEN",
+    "heroSupport": "Wood-fired pies, handmade dough, and toppings prepared daily in Main Market, Mardan. Sit in, take away, or let us bring the heat to your door.",
+    "aboutTitle": "MADE WITH PASSION",
+    "aboutLead": "A neighbourhood pizzeria with a serious oven and a simple rule: if it is not fresh, it does not go on the pie.",
+    "aboutBody": [
+      "Every morning we mill, mix, and rest our dough the slow way. It is stretched by hand, never pressed, then finished in a blistering oven so the crust stays crisp at the edge and tender in the centre.",
+      "Sauces are simmered in small batches. Cheese is layered, not dumped. Chicken, beef, and vegetables are sourced locally whenever we can, then seasoned in-house. Traditional Italian technique meets the flavours people in Mardan actually crave.",
+      "Whether you are here for a quiet lunch, a family table, or a late-night order, the standard stays the same: honest ingredients, careful heat, and pizza that tastes like someone cared."
+    ],
+    "aboutStats": [
+      {
+        "value": "2019",
+        "label": "Opened in Mardan"
+      },
+      {
+        "value": "8 hrs",
+        "label": "Dough rest time"
+      },
+      {
+        "value": "12 am",
+        "label": "Kitchen closes"
+      }
+    ],
+    "addressLine1": "Main Market, Mardan",
+    "addressLine2": "Khyber Pakhtunkhwa, Pakistan",
+    "phoneDisplay": "+92 XXX XXXXXXX",
+    "phoneTel": "+92XXXXXXXXXX",
+    "email": "hello@pizzahouse.pk",
+    "hoursTitle": "Monday – Sunday",
+    "hoursTime": "11:00 AM – 12:00 AM",
+    "hoursNote": "Kitchen last call 11:30 PM",
+    "mapsQuery": "Main Market, Mardan, Khyber Pakhtunkhwa, Pakistan",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Main+Market+Mardan+Khyber+Pakhtunkhwa",
+    "footerBlurb": "Handmade pizza from Main Market, Mardan. Fresh dough, a hot oven, and orders that actually arrive hot.",
+    "copyright": "© 2026 Pizza House. All rights reserved.",
+    "nav": [
+      {
+        "id": "home",
+        "label": "Home"
+      },
+      {
+        "id": "menu",
+        "label": "Menu"
+      },
+      {
+        "id": "offers",
+        "label": "Offers"
+      },
+      {
+        "id": "about",
+        "label": "About"
+      },
+      {
+        "id": "contact",
+        "label": "Contact"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "id": 1,
+      "name": "Margherita Classica",
+      "category": "Classic",
+      "description": "San Marzano tomato, fior di latte, torn basil, and a thread of olive oil.",
+      "price": 799,
+      "sizes": {
+        "small": 599,
+        "medium": 799,
+        "large": 1099
+      },
+      "image": "/images/margherita.jpg",
+      "badge": "Popular",
+      "ingredients": [
+        "Tomato",
+        "Mozzarella",
+        "Basil",
+        "Olive oil"
+      ],
+      "rating": 4.9,
+      "available": true
+    },
+    {
+      "id": 2,
+      "name": "Pepperoni Ember",
+      "category": "Classic",
+      "description": "Crisped pepperoni cups, mozzarella, and a slow-cooked tomato base.",
+      "price": 999,
+      "sizes": {
+        "small": 799,
+        "medium": 999,
+        "large": 1299
+      },
+      "image": "/images/pepperoni.jpg",
+      "badge": "Popular",
+      "ingredients": [
+        "Pepperoni",
+        "Mozzarella",
+        "Tomato",
+        "Oregano"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 3,
+      "name": "Four Cheese Vault",
+      "category": "Classic",
+      "description": "Mozzarella, cheddar, parmesan, and ricotta on a garlic-brushed crust.",
+      "price": 1099,
+      "sizes": {
+        "small": 899,
+        "medium": 1099,
+        "large": 1399
+      },
+      "image": "/images/cheese.jpg",
+      "badge": "",
+      "ingredients": [
+        "Mozzarella",
+        "Cheddar",
+        "Parmesan",
+        "Ricotta"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 4,
+      "name": "Smoky BBQ Chicken",
+      "category": "Chicken",
+      "description": "Charred chicken, smoked BBQ glaze, red onion, and coriander.",
+      "price": 899,
+      "sizes": {
+        "small": 699,
+        "medium": 899,
+        "large": 1199
+      },
+      "image": "/images/bbq.jpg",
+      "badge": "Popular",
+      "ingredients": [
+        "Chicken",
+        "BBQ sauce",
+        "Red onion",
+        "Coriander",
+        "Mozzarella"
+      ],
+      "rating": 4.9,
+      "available": true
+    },
+    {
+      "id": 5,
+      "name": "Mardan Tikka Fire",
+      "category": "Chicken",
+      "description": "Tandoori tikka chicken, green chilli, onion, and a cooling mint drizzle.",
+      "price": 999,
+      "sizes": {
+        "small": 799,
+        "medium": 999,
+        "large": 1299
+      },
+      "image": "/images/tikka.jpg",
+      "badge": "Spicy",
+      "ingredients": [
+        "Tikka chicken",
+        "Green chilli",
+        "Onion",
+        "Mint",
+        "Mozzarella"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 6,
+      "name": "Malai Boti Cream",
+      "category": "Chicken",
+      "description": "White malai sauce, tender boti chicken, mozzarella, and cracked pepper.",
+      "price": 1099,
+      "sizes": {
+        "small": 899,
+        "medium": 1099,
+        "large": 1399
+      },
+      "image": "/images/malai.jpg",
+      "badge": "New",
+      "ingredients": [
+        "Malai chicken",
+        "White sauce",
+        "Mozzarella",
+        "Black pepper"
+      ],
+      "rating": 4.6,
+      "available": true
+    },
+    {
+      "id": 7,
+      "name": "Seekh Kebab Heat",
+      "category": "Beef",
+      "description": "Spiced seekh kebab, caramelised onion, tomato, and chilli oil.",
+      "price": 1199,
+      "sizes": {
+        "small": 949,
+        "medium": 1199,
+        "large": 1499
+      },
+      "image": "/images/seekh.jpg",
+      "badge": "Chef's Pick",
+      "ingredients": [
+        "Beef seekh",
+        "Onion",
+        "Tomato",
+        "Chilli oil",
+        "Mozzarella"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 8,
+      "name": "Pepper Beef Night",
+      "category": "Beef",
+      "description": "Slow-cooked beef, cracked pepper sauce, mushrooms, and mozzarella.",
+      "price": 1299,
+      "sizes": {
+        "small": 999,
+        "medium": 1299,
+        "large": 1599
+      },
+      "image": "/images/beef.jpg",
+      "badge": "",
+      "ingredients": [
+        "Beef",
+        "Pepper sauce",
+        "Mushroom",
+        "Mozzarella"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 9,
+      "name": "Garden Harvest",
+      "category": "Vegetarian",
+      "description": "Roasted peppers, olives, onion, mushrooms, and fresh basil.",
+      "price": 849,
+      "sizes": {
+        "small": 649,
+        "medium": 849,
+        "large": 1149
+      },
+      "image": "/images/veggie.jpg",
+      "badge": "",
+      "ingredients": [
+        "Bell pepper",
+        "Olives",
+        "Onion",
+        "Mushroom",
+        "Basil"
+      ],
+      "rating": 4.6,
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "Truffle Forest",
+      "category": "Vegetarian",
+      "description": "Wild mushrooms, truffle oil, thyme, and a blanket of mozzarella.",
+      "price": 1199,
+      "sizes": {
+        "small": 949,
+        "medium": 1199,
+        "large": 1499
+      },
+      "image": "/images/mushroom.jpg",
+      "badge": "Chef's Pick",
+      "ingredients": [
+        "Mushroom",
+        "Truffle oil",
+        "Thyme",
+        "Mozzarella"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 11,
+      "name": "House Fire Special",
+      "category": "Specials",
+      "description": "Pepperoni, tikka chicken, jalapeño, extra cheese, and house chilli honey.",
+      "price": 1399,
+      "sizes": {
+        "small": 1099,
+        "medium": 1399,
+        "large": 1699
+      },
+      "image": "/images/special.jpg",
+      "badge": "Popular",
+      "ingredients": [
+        "Pepperoni",
+        "Chicken",
+        "Jalapeño",
+        "Extra cheese",
+        "Chilli honey"
+      ],
+      "rating": 5,
+      "available": true
+    },
+    {
+      "id": 12,
+      "name": "Fajita Sunset",
+      "category": "Specials",
+      "description": "Fajita chicken, peppers, onion, cheddar melt, and a lime crema finish.",
+      "price": 1149,
+      "sizes": {
+        "small": 899,
+        "medium": 1149,
+        "large": 1449
+      },
+      "image": "/images/fajita.jpg",
+      "badge": "New",
+      "available": true,
+      "ingredients": [
+        "Fajita chicken",
+        "Peppers",
+        "Onion",
+        "Cheddar",
+        "Lime crema"
+      ],
+      "rating": 4.7
+    },
+    {
+      "id": 13,
+      "name": "Saffron Seasonal",
+      "category": "Specials",
+      "description": "Limited oven run with saffron cream, roasted chicken, and pistachio dust.",
+      "price": 1499,
+      "sizes": {
+        "small": 1199,
+        "medium": 1499,
+        "large": 1799
+      },
+      "image": "/images/margherita.jpg",
+      "badge": "Seasonal",
+      "ingredients": [
+        "Saffron cream",
+        "Chicken",
+        "Pistachio",
+        "Mozzarella"
+      ],
+      "rating": 4.9,
+      "available": false
+    }
+  ],
+  "menuCategories": [
+    "All",
+    "Classic",
+    "Chicken",
+    "Beef",
+    "Vegetarian",
+    "Specials"
+  ],
+  "heroSlides": [
+    {
+      "src": "/images/dining.jpg",
+      "alt": "Warm dining room at Pizza House in Main Market, Mardan",
+      "kicker": "The table",
+      "caption": "A neighbourhood room, lit for pizza."
+    },
+    {
+      "src": "/images/hero.jpg",
+      "alt": "Wood-fired pizza with melted cheese and blistered crust",
+      "kicker": "The pie",
+      "caption": "Pulled from the oven, not a holding rack."
+    },
+    {
+      "src": "/images/kitchen.jpg",
+      "alt": "Chef stretching handmade pizza dough",
+      "kicker": "The craft",
+      "caption": "Dough rested, stretched by hand."
+    },
+    {
+      "src": "/images/pepperoni.jpg",
+      "alt": "Pepperoni pizza with crisped cups and golden crust",
+      "kicker": "The heat",
+      "caption": "Serious fire. Honest toppings."
+    }
+  ],
+  "houseSlides": [
+    {
+      "src": "/images/kitchen.jpg",
+      "alt": "Hands working pizza dough in the Pizza House kitchen",
+      "kicker": "Inside the house",
+      "title": "Dough that takes its time",
+      "text": "Eight hours of rest before it ever sees the peel."
+    },
+    {
+      "src": "/images/offer.jpg",
+      "alt": "Overhead pizza with charred crust and fresh toppings",
+      "kicker": "From the oven",
+      "title": "Finished in fire",
+      "text": "A blistered edge, a tender centre, served at once."
+    },
+    {
+      "src": "/images/dining.jpg",
+      "alt": "Guests dining in a warm restaurant interior",
+      "kicker": "Main Market",
+      "title": "Tables until midnight",
+      "text": "Stay in, take away, or send it across Mardan."
+    },
+    {
+      "src": "/images/special.jpg",
+      "alt": "House special pizza ready to share",
+      "kicker": "For the table",
+      "title": "Built for sharing",
+      "text": "Weekend deals, party trays, and late-night pies."
+    }
+  ],
+  "offerSlides": [
+    {
+      "src": "/images/offer.jpg",
+      "alt": "Weekend pizza deal featuring two pizzas"
+    },
+    {
+      "src": "/images/bbq.jpg",
+      "alt": "Smoky BBQ chicken pizza"
+    },
+    {
+      "src": "/images/special.jpg",
+      "alt": "House fire special pizza"
+    }
+  ],
+  "images": {
+    "heroPizza": "/images/hero.jpg",
+    "offerPizza": "/images/offer.jpg",
+    "aboutKitchen": "/images/kitchen.jpg",
+    "aboutOven": "/images/oven.jpg",
+    "contactAmbience": "/images/dining.jpg"
+  },
+  "offers": [
+    {
+      "id": "weekend-deal",
+      "kicker": "Saturday & Sunday",
+      "title": "WEEKEND PIZZA DEAL",
+      "headline": "2 Medium Pizzas + 2 Drinks",
+      "description": "Pick any two medium pies from the classic or chicken list, add two regular drinks, and keep the table happy without emptying the wallet.",
+      "price": 1999,
+      "originalPrice": 2598,
+      "cta": "Ask about this deal",
+      "note": "Dine-in, takeaway, and delivery. Add-ons billed separately.",
+      "includes": [
+        "Any 2 medium pizzas",
+        "2 regular drinks",
+        "Garlic dip on the house"
+      ],
+      "image": "/images/offer.jpg"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Ahmed",
+      "city": "Mardan",
+      "quote": "The crust was perfectly crispy and the toppings were fresh. BBQ chicken is the one I keep coming back for.",
+      "rating": 5,
+      "dish": "Smoky BBQ Chicken"
+    },
+    {
+      "id": 2,
+      "name": "Ayesha",
+      "city": "Mardan",
+      "quote": "We ordered the weekend deal for a family dinner. Both pizzas arrived hot, and the garlic dip disappeared first.",
+      "rating": 5,
+      "dish": "Weekend Deal"
+    },
+    {
+      "id": 3,
+      "name": "Bilal",
+      "city": "Takht Bhai",
+      "quote": "Seekh kebab pizza is properly spiced — not a bland meat topping. Delivery to Takht Bhai was still on time.",
+      "rating": 5,
+      "dish": "Seekh Kebab Heat"
+    },
+    {
+      "id": 4,
+      "name": "Fatima",
+      "city": "Mardan",
+      "quote": "The Garden Harvest actually tastes like vegetables, not filler. Clean dining room, kind staff, easy takeaway.",
+      "rating": 4,
+      "dish": "Garden Harvest"
+    },
+    {
+      "id": 5,
+      "name": "Usman",
+      "city": "Mardan",
+      "quote": "Late-night order after 11 and it still came with a blistered crust. That oven is the real difference.",
+      "rating": 5,
+      "dish": "Pepperoni Ember"
+    }
+  ],
+  "testimonialsNote": "Sample guest comments for demonstration. Replace them with real reviews in the owner panel.",
+  "features": [
+    {
+      "id": "fresh",
+      "title": "Fresh Ingredients",
+      "description": "Produce prepped daily. No tired toppings from yesterday's tray.",
+      "icon": "fresh"
+    },
+    {
+      "id": "fast",
+      "title": "Fast Delivery",
+      "description": "Mardan routes we actually know. Pies leave the oven, not a holding rack.",
+      "icon": "fast"
+    },
+    {
+      "id": "handcrafted",
+      "title": "Handcrafted Pizza",
+      "description": "Dough rested, stretched by hand, and finished in serious heat.",
+      "icon": "handcrafted"
+    },
+    {
+      "id": "quality",
+      "title": "Quality Guaranteed",
+      "description": "If a pie is not right, we remake it. That is the house rule.",
+      "icon": "quality"
+    }
+  ],
+  "services": [
+    {
+      "id": "dine-in",
+      "title": "Dine In",
+      "description": "Warm tables, a view of the oven, and pizza served the moment it leaves the peel.",
+      "icon": "dine"
+    },
+    {
+      "id": "delivery",
+      "title": "Home Delivery",
+      "description": "Hot bags, clear ETAs, and coverage across Mardan for lunch through late night.",
+      "icon": "delivery"
+    },
+    {
+      "id": "takeaway",
+      "title": "Takeaway",
+      "description": "Call ahead or stop by. Pies boxed firm so the crust survives the ride home.",
+      "icon": "takeaway"
+    },
+    {
+      "id": "party",
+      "title": "Party Orders",
+      "description": "Office lunches, birthdays, and bulk trays. Tell us the headcount — we will plan the oven.",
+      "icon": "party"
+    }
+  ]
+}
