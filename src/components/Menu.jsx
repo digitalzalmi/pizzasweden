@@ -27,26 +27,26 @@ export default function Menu() {
   }, [category, menuQuery, menu]);
 
   return (
-    <SectionReveal id="menu" className="scroll-mt-24 bg-cream py-14 sm:py-20" aria-labelledby="menu-heading">
+    <SectionReveal id="menu" className="scroll-mt-20 bg-cream py-10 sm:py-14" aria-labelledby="menu-heading">
       <div className="container-site">
         <div className="max-w-2xl">
-          <p className="text-[0.68rem] font-bold tracking-[0.22em] text-tomato uppercase sm:text-[0.72rem] sm:tracking-[0.28em]">Wood-fired list</p>
-          <h2 id="menu-heading" className="font-display mt-3 text-[clamp(1.85rem,8vw,4rem)] text-ink">
+          <p className="text-[0.6rem] font-bold tracking-[0.2em] text-tomato uppercase sm:text-[0.65rem] sm:tracking-[0.24em]">Wood-fired list</p>
+          <h2 id="menu-heading" className="font-display mt-2 text-[clamp(1.55rem,5.5vw,2.75rem)] text-ink">
             OUR FAVORITE PIZZAS
           </h2>
-          <p className="mt-4 max-w-xl text-muted">
+          <p className="mt-3 max-w-xl text-sm text-muted">
             Built on rested dough and a blistering oven. Filter by style and pick a size to see prices in Swedish kronor (SEK).
           </p>
         </div>
 
-        <div className="mt-8 flex gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label="Pizza categories">
+        <div className="mt-6 flex gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label="Pizza categories">
           {menuCategories.map((item) => (
             <button
               key={item}
               type="button"
               role="tab"
               aria-selected={category === item}
-              className={`rounded-full border px-4 py-2 text-sm font-semibold whitespace-nowrap transition-colors ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-colors ${
                 category === item
                   ? "border-ink bg-ink text-cream"
                   : "border-line bg-paper text-warm hover:border-ink"
@@ -74,7 +74,7 @@ export default function Menu() {
           </p>
         )}
 
-        <div className="menu-grid mt-8">
+        <div className="menu-grid mt-6">
           {pizzas.map((pizza) => (
             <PizzaCard key={pizza.id} pizza={pizza} highlighted={highlightId === pizza.id} />
           ))}

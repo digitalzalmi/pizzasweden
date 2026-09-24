@@ -20,13 +20,13 @@ export default function FeatureStrip() {
           {features.map((feature) => {
             const Icon = iconMap[feature.icon];
             return (
-              <article key={feature.id} className="flex items-start gap-3 px-4 py-5 sm:px-5 sm:py-6">
-                <span className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-ink text-gold">
-                  <Icon size={18} aria-hidden="true" />
+              <article key={feature.id} className="flex items-start gap-2.5 px-3.5 py-4 sm:px-4 sm:py-5">
+                <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-ink text-gold">
+                  <Icon size={15} aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-sm font-bold tracking-wide text-ink uppercase">{feature.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{feature.description}</p>
+                  <p className="text-xs font-bold tracking-wide text-ink uppercase">{feature.title}</p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted sm:text-[0.8rem]">{feature.description}</p>
                 </div>
               </article>
             );

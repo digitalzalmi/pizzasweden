@@ -40,20 +40,20 @@ export default function Navbar() {
             : "bg-transparent text-cream"
         }`}
       >
-        <nav className="container-site flex h-16 items-center justify-between gap-2 sm:h-[72px] sm:gap-4" aria-label="Primary">
-          <a href="#home" className="flex min-w-0 items-center gap-2 no-underline sm:gap-2.5" onClick={() => goTo("home")}>
-            <PizzaLogo className="h-8 w-8 shrink-0 sm:h-10 sm:w-10" />
-            <span className="font-display truncate text-[0.92rem] font-semibold tracking-[0.1em] text-gold sm:text-[1.15rem] sm:tracking-[0.18em]">
+        <nav className="container-site flex h-14 items-center justify-between gap-2 sm:h-16 sm:gap-3" aria-label="Primary">
+          <a href="#home" className="flex min-w-0 items-center gap-2 no-underline sm:gap-2" onClick={() => goTo("home")}>
+            <PizzaLogo className="h-7 w-7 shrink-0 sm:h-8 sm:w-8" />
+            <span className="font-display truncate text-[0.82rem] font-semibold tracking-[0.08em] text-gold sm:text-[1rem] sm:tracking-[0.14em]">
               {restaurant.name}
             </span>
           </a>
 
-          <ul className="hidden items-center gap-8 lg:flex">
+          <ul className="hidden items-center gap-6 lg:flex">
             {restaurant.nav.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className="text-[0.78rem] font-semibold tracking-[0.16em] text-cream/80 uppercase no-underline transition-colors hover:text-gold"
+                  className="text-[0.68rem] font-semibold tracking-[0.14em] text-cream/80 uppercase no-underline transition-colors hover:text-gold"
                 >
                   {item.label}
                 </a>
@@ -61,27 +61,27 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="flex shrink-0 items-center gap-0.5 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1.5">
             <button
               type="button"
-              className="grid h-10 w-10 place-items-center rounded-full text-cream transition-colors hover:bg-white/10 hover:text-gold"
+              className="grid h-9 w-9 place-items-center rounded-full text-cream transition-colors hover:bg-white/10 hover:text-gold"
               aria-label="Search the menu"
               onClick={() => setSearchOpen(true)}
             >
-              <FiSearch size={18} />
+              <FiSearch size={16} />
             </button>
             <button type="button" className="btn btn-gold hidden md:inline-flex" onClick={() => goTo("contact")}>
               Contact
             </button>
             <button
               type="button"
-              className="grid h-10 w-10 place-items-center rounded-full lg:hidden"
+              className="grid h-9 w-9 place-items-center rounded-full lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               onClick={() => setMobileOpen((open) => !open)}
             >
-              {mobileOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+              {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
           </div>
         </nav>
@@ -101,7 +101,7 @@ export default function Navbar() {
               <li key={item.id} style={{ transitionDelay: mobileOpen ? `${index * 60}ms` : "0ms" }}>
                 <button
                   type="button"
-                  className="font-display w-full py-2.5 text-left text-[clamp(1.85rem,8vw,2.5rem)] text-cream sm:py-3"
+                  className="font-display w-full py-2 text-left text-[clamp(1.55rem,6.5vw,2rem)] text-cream sm:py-2.5"
                   onClick={() => goTo(item.id)}
                 >
                   {item.label}

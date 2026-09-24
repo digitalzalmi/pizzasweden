@@ -6,7 +6,6 @@ import { offers } from "./offers.js";
 import { testimonials, testimonialsNote } from "./testimonials.js";
 import { features } from "./features.js";
 import { services } from "./services.js";
-import { builderOptions } from "./builder.js";
 
 export function getDefaultContent() {
   return structuredClone({
@@ -22,6 +21,5 @@ export function getDefaultContent() {
     testimonialsNote,
     features,
     services,
-    builderOptions,
   });
 }

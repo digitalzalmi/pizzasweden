@@ -10,6 +10,6 @@ export const images = {
   offerPizza: "/images/offer.jpg",
   aboutKitchen: "/images/kitchen.jpg",
   aboutOven: "/images/oven.jpg",
-  builderPreview: "/images/builder.jpg",
   contactAmbience: "/images/dining.jpg",
 };
+

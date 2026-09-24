@@ -5,16 +5,16 @@ import SectionReveal from "./SectionReveal";
 export default function Contact() {
   const { restaurant, images } = useContent();
   return (
-    <SectionReveal id="contact" className="scroll-mt-24 bg-paper py-14 sm:py-20" variant="up" aria-labelledby="contact-heading">
-      <div className="container-site grid overflow-hidden rounded-[1.25rem] bg-cream sm:rounded-[2rem] lg:grid-cols-2">
-        <div className="p-5 sm:p-8 md:p-12">
-          <p className="text-[0.72rem] font-bold tracking-[0.28em] text-tomato uppercase">Visit us</p>
-          <h2 id="contact-heading" className="font-display mt-3 text-[clamp(2.2rem,5vw,3.5rem)] text-ink">
+    <SectionReveal id="contact" className="scroll-mt-20 bg-paper py-10 sm:py-14" variant="up" aria-labelledby="contact-heading">
+      <div className="container-site grid overflow-hidden rounded-xl bg-cream sm:rounded-2xl lg:grid-cols-2">
+        <div className="p-4 sm:p-6 md:p-8">
+          <p className="text-[0.6rem] font-bold tracking-[0.2em] text-tomato uppercase sm:text-[0.65rem]">Visit us</p>
+          <h2 id="contact-heading" className="font-display mt-2 text-[clamp(1.7rem,4vw,2.5rem)] text-ink">
             {restaurant.shortName}
           </h2>
-          <address className="mt-6 not-italic">
-            <p className="flex items-start gap-3 text-lg text-ink">
-              <FiMapPin className="mt-1 text-gold" aria-hidden="true" />
+          <address className="mt-4 not-italic">
+            <p className="flex items-start gap-2.5 text-sm text-ink sm:text-base">
+              <FiMapPin className="mt-0.5 text-gold" aria-hidden="true" />
               <span>
                 {restaurant.addressLine1}
                 <br />
@@ -23,11 +23,11 @@ export default function Contact() {
             </p>
           </address>
 
-          <dl className="mt-8 space-y-4">
-            <div className="flex items-center gap-3">
+          <dl className="mt-5 space-y-3 text-sm">
+            <div className="flex items-center gap-2.5">
               <FiPhone className="text-gold" aria-hidden="true" />
               <div>
-                <dt className="text-xs tracking-[0.16em] text-muted uppercase">Phone</dt>
+                <dt className="text-[0.65rem] tracking-[0.14em] text-muted uppercase">Phone</dt>
                 <dd>
                   <a className="text-ink no-underline hover:text-tomato" href={`tel:${restaurant.phoneTel}`}>
                     {restaurant.phoneDisplay}
@@ -35,10 +35,10 @@ export default function Contact() {
                 </dd>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <FiMail className="text-gold" aria-hidden="true" />
               <div>
-                <dt className="text-xs tracking-[0.16em] text-muted uppercase">Email</dt>
+                <dt className="text-[0.65rem] tracking-[0.14em] text-muted uppercase">Email</dt>
                 <dd>
                   <a className="text-ink no-underline hover:text-tomato" href={`mailto:${restaurant.email}`}>
                     {restaurant.email}
@@ -46,10 +46,10 @@ export default function Contact() {
                 </dd>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2.5">
               <FiClock className="text-gold" aria-hidden="true" />
               <div>
-                <dt className="text-xs tracking-[0.16em] text-muted uppercase">Opening hours</dt>
+                <dt className="text-[0.65rem] tracking-[0.14em] text-muted uppercase">Opening hours</dt>
                 <dd className="text-ink">
                   {restaurant.hoursTitle}
                   <br />
@@ -59,7 +59,7 @@ export default function Contact() {
             </div>
           </dl>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-6 flex flex-wrap gap-2.5">
             <a className="btn btn-gold no-underline" href={`mailto:${restaurant.email}`}>
               Contact
             </a>
@@ -69,7 +69,7 @@ export default function Contact() {
           </div>
         </div>
 
-        <div className="relative min-h-[320px]">
+        <div className="relative min-h-[260px]">
           <img
             src={images.contactAmbience}
             alt="Warm restaurant dining room at Pizza House"
@@ -81,12 +81,12 @@ export default function Contact() {
             href={restaurant.mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="absolute inset-3 flex flex-col items-start justify-end rounded-[1rem] border border-white/20 bg-ink/40 p-4 text-cream no-underline backdrop-blur-[2px] sm:inset-8 sm:rounded-[1.4rem] sm:p-6"
+            className="absolute inset-2.5 flex flex-col items-start justify-end rounded-lg border border-white/20 bg-ink/40 p-3.5 text-cream no-underline backdrop-blur-[2px] sm:inset-5 sm:rounded-xl sm:p-5"
           >
-            <p className="text-xs tracking-[0.2em] text-gold uppercase">Google Maps</p>
-            <p className="font-display mt-2 text-2xl sm:text-3xl">Find us in Main Market</p>
-            <p className="mt-2 text-sm text-cream/70">{restaurant.mapsQuery}</p>
-            <span className="btn btn-gold mt-5">Open map</span>
+            <p className="text-[0.65rem] tracking-[0.16em] text-gold uppercase">Google Maps</p>
+            <p className="font-display mt-1.5 text-xl sm:text-2xl">Find us in Main Market</p>
+            <p className="mt-1.5 text-xs text-cream/70">{restaurant.mapsQuery}</p>
+            <span className="btn btn-gold mt-4">Open map</span>
           </a>
         </div>
       </div>

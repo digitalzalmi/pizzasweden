@@ -10,38 +10,38 @@ export default function Testimonials() {
   if (!review) return null;
 
   return (
-    <SectionReveal className="bg-cream py-14 sm:py-20" variant="right" aria-labelledby="reviews-heading">
-      <div className="container-site grid gap-8 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+    <SectionReveal className="bg-cream py-10 sm:py-14" variant="right" aria-labelledby="reviews-heading">
+      <div className="container-site grid gap-6 sm:gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p className="text-[0.68rem] font-bold tracking-[0.22em] text-tomato uppercase sm:text-[0.72rem] sm:tracking-[0.28em]">Guest notes</p>
-          <h2 id="reviews-heading" className="font-display mt-3 text-[clamp(1.85rem,8vw,3.6rem)] text-ink">
+          <p className="text-[0.6rem] font-bold tracking-[0.2em] text-tomato uppercase sm:text-[0.65rem] sm:tracking-[0.24em]">Guest notes</p>
+          <h2 id="reviews-heading" className="font-display mt-2 text-[clamp(1.55rem,5.5vw,2.5rem)] text-ink">
             What the table says
           </h2>
-          <p className="mt-4 text-sm text-muted">{testimonialsNote}</p>
+          <p className="mt-3 text-xs text-muted sm:text-sm">{testimonialsNote}</p>
         </div>
 
-        <figure className="rounded-[1.4rem] bg-paper p-5 shadow-[0_16px_40px_rgba(22,19,17,0.06)] sm:rounded-[2rem] sm:p-8 md:p-12">
+        <figure className="rounded-xl bg-paper p-4 shadow-[0_10px_28px_rgba(22,19,17,0.05)] sm:rounded-2xl sm:p-6 md:p-8">
           <div className="flex text-gold" aria-label={`${review.rating} out of 5 stars`}>
             {Array.from({ length: 5 }).map((_, index) => (
-              <AiFillStar key={index} className={index < review.rating ? "text-gold" : "text-line"} />
+              <AiFillStar key={index} className={index < review.rating ? "text-gold" : "text-line"} size={16} />
             ))}
           </div>
-          <blockquote className="font-display mt-6 text-[clamp(1.5rem,3vw,2.35rem)] leading-snug text-ink">
+          <blockquote className="font-display mt-4 text-[clamp(1.2rem,2.5vw,1.75rem)] leading-snug text-ink">
             “{review.quote}”
           </blockquote>
-          <figcaption className="mt-6 text-sm">
+          <figcaption className="mt-4 text-xs sm:text-sm">
             <span className="font-bold text-ink">— {review.name}</span>
             <span className="text-muted"> · {review.city} · {review.dish}</span>
           </figcaption>
 
-          <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Choose a review">
+          <div className="mt-5 flex flex-wrap gap-1.5" role="tablist" aria-label="Choose a review">
             {testimonials.map((item, index) => (
               <button
                 key={item.id}
                 type="button"
                 role="tab"
                 aria-selected={index === active}
-                className={`rounded-full px-4 py-2 text-sm font-semibold ${
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
                   index === active ? "bg-ink text-cream" : "bg-cream text-warm hover:bg-line"
                 }`}
                 onClick={() => setActive(index)}

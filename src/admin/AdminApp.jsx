@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Route, Routes, useNavigate } from "react-router-dom";
-import { FiImage, FiLogOut, FiMenu, FiSettings, FiStar, FiTag, FiTool, FiX } from "react-icons/fi";
+import { FiImage, FiLogOut, FiMenu, FiSettings, FiStar, FiTag, FiX } from "react-icons/fi";
 import { GiPizzaSlice } from "react-icons/gi";
 import { useContent } from "../context/ContentContext";
 import { changePassword, fetchSession, login, logout, saveContent, uploadImage } from "../api";
@@ -12,7 +12,6 @@ const tabs = [
   { to: "/admin/offers", label: "Offers", icon: FiTag },
   { to: "/admin/shop", label: "Shop details", icon: FiSettings },
   { to: "/admin/reviews", label: "Reviews", icon: FiStar },
-  { to: "/admin/builder", label: "Builder prices", icon: FiTool },
 ];
 
 export default function AdminApp() {
@@ -211,7 +210,6 @@ function AdminShell({ onLogout }) {
             <Route path="/offers" element={<OffersPanel draft={draft} setDraft={setDraft} upload={handleUpload} />} />
             <Route path="/shop" element={<ShopPanel draft={draft} setDraft={setDraft} />} />
             <Route path="/reviews" element={<ReviewsPanel draft={draft} setDraft={setDraft} />} />
-            <Route path="/builder" element={<BuilderPanel draft={draft} setDraft={setDraft} />} />
           </Routes>
           <p className="mt-10 text-xs text-muted">
             Remember to press <strong>Save changes</strong> at the top. Download a backup from Shop details before a future website update.
@@ -396,13 +394,12 @@ function PhotosPanel({ draft, setDraft, upload }) {
     <section className="space-y-10">
       <div>
         <h1 className="font-display text-3xl">Photos</h1>
-        <p className="mt-1 text-sm text-muted">Upload new pictures for the homepage banners and the About / Contact / Builder sections.</p>
+        <p className="mt-1 text-sm text-muted">Upload new pictures for the homepage banners and the About / Contact sections.</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         <ImageUpload label="About — kitchen" value={draft.images.aboutKitchen} onChange={(value) => updateImage("aboutKitchen", value)} upload={upload} />
         <ImageUpload label="About — oven" value={draft.images.aboutOven} onChange={(value) => updateImage("aboutOven", value)} upload={upload} />
-        <ImageUpload label="Pizza builder preview" value={draft.images.builderPreview} onChange={(value) => updateImage("builderPreview", value)} upload={upload} />
         <ImageUpload label="Contact / dining room" value={draft.images.contactAmbience} onChange={(value) => updateImage("contactAmbience", value)} upload={upload} />
       </div>
 
@@ -701,38 +698,6 @@ function ReviewsPanel({ draft, setDraft }) {
           </li>
         ))}
       </ul>
-    </section>
-  );
-}
-
-function BuilderPanel({ draft, setDraft }) {
-  function updateList(key, index, patch) {
-    setDraft((current) => ({
-      ...current,
-      builderOptions: {
-        ...current.builderOptions,
-        [key]: current.builderOptions[key].map((item, itemIndex) => (itemIndex === index ? { ...item, ...patch } : item)),
-      },
-    }));
-  }
-
-  return (
-    <section>
-      <h1 className="font-display text-3xl">Builder prices</h1>
-      <p className="mt-1 text-sm text-muted">These numbers power the “Build your pizza” ticket.</p>
-      {["sizes", "crusts", "sauces", "cheeses", "toppings"].map((key) => (
-        <div key={key} className="mt-8">
-          <h2 className="font-display text-2xl capitalize">{key}</h2>
-          <ul className="mt-3 grid gap-3 md:grid-cols-2">
-            {draft.builderOptions[key].map((item, index) => (
-              <li key={item.id} className="grid grid-cols-2 gap-3 rounded-2xl border border-line bg-cream p-3">
-                <Field label="Label" value={item.label} onChange={(value) => updateList(key, index, { label: value })} />
-                <Field label="Price (SEK)" type="number" value={item.price} onChange={(value) => updateList(key, index, { price: Number(value) || 0 })} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
     </section>
   );
 }
