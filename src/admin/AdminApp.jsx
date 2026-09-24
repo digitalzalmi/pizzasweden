@@ -61,7 +61,7 @@ function LoginForm({ onSuccess }) {
       <form onSubmit={submit} className="w-full max-w-md rounded-[1.6rem] bg-paper p-6 text-ink shadow-2xl sm:p-8">
         <p className="text-[0.72rem] font-bold tracking-[0.22em] text-tomato uppercase">Pizza House</p>
         <h1 className="font-display mt-2 text-3xl">Owner login</h1>
-        <p className="mt-2 text-sm text-muted">Change photos, prices, hours, and offers from this panel. Guest orders still arrive on WhatsApp.</p>
+        <p className="mt-2 text-sm text-muted">Change photos, prices, hours, and offers from this panel.</p>
         <label className="mt-6 block text-sm font-semibold">
           Password
           <input
@@ -356,7 +356,7 @@ function MenuPanel({ draft, setDraft, upload }) {
                     checked={pizza.available}
                     onChange={(event) => updatePizza(pizza.id, { available: event.target.checked })}
                   />
-                  Available to order
+                  Available on the menu
                 </label>
                 <div className="md:col-span-2">
                   <button type="button" className="text-sm font-semibold text-tomato" onClick={() => removePizza(pizza.id)}>
@@ -483,24 +483,14 @@ function OffersPanel({ draft, setDraft, upload }) {
     description: "",
     price: 0,
     originalPrice: 0,
-    cta: "ORDER DEAL",
+    cta: "Ask about this deal",
     note: "",
     includes: [],
     image: "/images/offer.jpg",
-    cartItem: { name: "", size: "", price: 0, image: "/images/offer.jpg" },
   };
 
   function update(patch) {
-    const next = { ...offer, ...patch };
-    if (patch.price != null || patch.image || patch.headline) {
-      next.cartItem = {
-        ...next.cartItem,
-        name: next.cartItem?.name || next.headline,
-        price: next.price,
-        image: next.image,
-      };
-    }
-    setDraft((current) => ({ ...current, offers: [next] }));
+    setDraft((current) => ({ ...current, offers: [{ ...offer, ...patch }] }));
   }
 
   return (
@@ -525,7 +515,7 @@ function OffersPanel({ draft, setDraft, upload }) {
           onChange={(value) => update({ includes: value.split("\n").map((item) => item.trim()).filter(Boolean) })}
         />
         <Field label="Fine print" value={offer.note} onChange={(value) => update({ note: value })} />
-        <ImageUpload label="Deal photo" value={offer.image} onChange={(image) => update({ image, cartItem: { ...offer.cartItem, image } })} upload={upload} />
+        <ImageUpload label="Deal photo" value={offer.image} onChange={(image) => update({ image })} upload={upload} />
       </div>
     </section>
   );

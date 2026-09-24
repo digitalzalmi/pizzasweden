@@ -353,10 +353,6 @@ select {
   font-family: inherit;
 }
 
-.cart-panel {
-  box-shadow: -20px 0 50px rgba(22, 19, 17, 0.28);
-}
-
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

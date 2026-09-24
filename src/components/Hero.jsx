@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { FiPhone, FiMapPin, FiClock } from "react-icons/fi";
-import { useCart } from "../context/CartContext";
 import { useContent } from "../context/ContentContext";
 import ImageSlider from "./ImageSlider";
 
 export default function Hero() {
   const { restaurant, heroSlides } = useContent();
-  const { openCart } = useCart();
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -20,6 +18,10 @@ export default function Hero() {
 
   function scrollToMenu() {
     document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
+  }
+
+  function scrollToContact() {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -46,11 +48,11 @@ export default function Hero() {
             {restaurant.heroSupport}
           </p>
           <div className="hero-enter-delay mt-6 flex w-full max-w-md flex-col gap-3 pointer-events-auto sm:mt-8 sm:max-w-none sm:flex-row sm:flex-wrap">
-            <button type="button" className="btn btn-gold w-full sm:w-auto" onClick={() => openCart()}>
-              Order Now
-            </button>
-            <button type="button" className="btn btn-ghost w-full sm:w-auto" onClick={scrollToMenu}>
+            <button type="button" className="btn btn-gold w-full sm:w-auto" onClick={scrollToMenu}>
               Explore Menu
+            </button>
+            <button type="button" className="btn btn-ghost w-full sm:w-auto" onClick={scrollToContact}>
+              Contact Us
             </button>
           </div>
         </div>

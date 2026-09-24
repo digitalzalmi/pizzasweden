@@ -19,7 +19,7 @@ export const services = [
   {
     id: "takeaway",
     title: "Takeaway",
-    description: "Call ahead or order from the cart. Pies boxed firm so the crust survives the ride home.",
+    description: "Call ahead or stop by. Pies boxed firm so the crust survives the ride home.",
     icon: "takeaway",
   },
   {

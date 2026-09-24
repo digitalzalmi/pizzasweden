@@ -1,4 +1,3 @@
-import { useCart } from "../context/CartContext";
 import { useContent } from "../context/ContentContext";
 import { formatPrice } from "../utils/format";
 import ImageSlider from "./ImageSlider";
@@ -7,17 +6,10 @@ import SectionReveal from "./SectionReveal";
 export default function OfferBanner() {
   const { offers, offerSlides } = useContent();
   const offer = offers[0];
-  const { addItem } = useCart();
   if (!offer) return null;
 
-  function orderDeal() {
-    addItem({
-      pizzaId: offer.id,
-      name: offer.cartItem.name,
-      size: offer.cartItem.size,
-      price: offer.cartItem.price,
-      image: offer.cartItem.image,
-    });
+  function scrollToContact() {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -57,8 +49,8 @@ export default function OfferBanner() {
               ))}
             </ul>
 
-            <button type="button" className="btn btn-gold mt-8" onClick={orderDeal}>
-              {offer.cta}
+            <button type="button" className="btn btn-gold mt-8" onClick={scrollToContact}>
+              {offer.cta || "Ask about this deal"}
             </button>
             <p className="mt-3 text-xs text-cream/45">{offer.note}</p>
           </div>

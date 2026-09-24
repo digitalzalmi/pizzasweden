@@ -7,10 +7,3 @@ export function formatPrice(amount) {
     maximumFractionDigits: 0,
   }).format(value);
 }
-
-export function createCartId() {
-  if (typeof crypto !== "undefined" && crypto.randomUUID) {
-    return crypto.randomUUID();
-  }
-  return `item-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-}

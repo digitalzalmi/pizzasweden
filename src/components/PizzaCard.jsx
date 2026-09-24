@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import { useCart } from "../context/CartContext";
 import { formatPrice } from "../utils/format";
 
 const SIZE_KEYS = [
@@ -10,19 +9,8 @@ const SIZE_KEYS = [
 ];
 
 export default function PizzaCard({ pizza, highlighted = false }) {
-  const { addItem } = useCart();
   const [size, setSize] = useState("medium");
   const price = pizza.sizes?.[size] ?? pizza.price;
-
-  function addToOrder() {
-    addItem({
-      pizzaId: pizza.id,
-      name: pizza.name,
-      size: size[0].toUpperCase() + size.slice(1),
-      price,
-      image: pizza.image,
-    });
-  }
 
   return (
     <article
@@ -43,6 +31,11 @@ export default function PizzaCard({ pizza, highlighted = false }) {
             {pizza.badge}
           </span>
         ) : null}
+        {!pizza.available ? (
+          <span className="absolute top-3 right-3 rounded-full bg-ink/85 px-3 py-1 text-[0.68rem] font-bold tracking-[0.14em] text-cream uppercase">
+            Sold out
+          </span>
+        ) : null}
         <span className="absolute right-3 bottom-3 rounded-full bg-paper/95 px-3 py-1 text-sm font-bold text-ink">
           {formatPrice(price)}
         </span>
@@ -59,7 +52,7 @@ export default function PizzaCard({ pizza, highlighted = false }) {
         <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{pizza.description}</p>
 
         <div className="mt-4 flex items-center justify-between gap-3">
-          <div className="flex rounded-full border border-line p-1" role="group" aria-label={`Choose size for ${pizza.name}`}>
+          <div className="flex rounded-full border border-line p-1" role="group" aria-label={`View size prices for ${pizza.name}`}>
             {SIZE_KEYS.map((option) => (
               <button
                 key={option.key}
@@ -76,15 +69,6 @@ export default function PizzaCard({ pizza, highlighted = false }) {
           </div>
           <p className="text-[0.7rem] tracking-[0.12em] text-muted uppercase">{size}</p>
         </div>
-
-        <button
-          type="button"
-          className="btn btn-ink mt-5 w-full"
-          disabled={!pizza.available}
-          onClick={addToOrder}
-        >
-          {pizza.available ? "Add to Order" : "Sold Out"}
-        </button>
       </div>
     </article>
   );

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
-import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
 import { formatPrice } from "../utils/format";
 
 export default function SearchModal() {
   const { menu } = useContent();
-  const { setSearchOpen, setMenuQuery, setHighlightId } = useCart();
+  const { setSearchOpen, setMenuQuery, setHighlightId } = useUi();
   const inputRef = useRef(null);
   const [query, setQuery] = useState("");
 

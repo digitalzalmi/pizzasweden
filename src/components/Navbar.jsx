@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { FiMenu, FiSearch, FiX } from "react-icons/fi";
-import { HiOutlineShoppingBag } from "react-icons/hi2";
-import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
 import PizzaLogo from "./PizzaLogo";
 import SearchModal from "./SearchModal";
 
 export default function Navbar() {
   const { restaurant } = useContent();
-  const { count, openCart, setSearchOpen, searchOpen } = useCart();
+  const { setSearchOpen, searchOpen } = useUi();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -71,21 +70,8 @@ export default function Navbar() {
             >
               <FiSearch size={18} />
             </button>
-            <button
-              type="button"
-              className="relative grid h-10 w-10 place-items-center rounded-full text-cream transition-colors hover:bg-white/10 hover:text-gold"
-              aria-label={`Open order bag, ${count} items`}
-              onClick={() => openCart()}
-            >
-              <HiOutlineShoppingBag size={19} />
-              {count > 0 && (
-                <span className="absolute top-1 right-1 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-[10px] font-bold text-ink">
-                  {count}
-                </span>
-              )}
-            </button>
-            <button type="button" className="btn btn-gold hidden md:inline-flex" onClick={() => openCart()}>
-              Order Now
+            <button type="button" className="btn btn-gold hidden md:inline-flex" onClick={() => goTo("contact")}>
+              Contact
             </button>
             <button
               type="button"
@@ -125,8 +111,8 @@ export default function Navbar() {
           </ul>
           <div className="mt-auto flex flex-col gap-3">
             <p className="text-sm text-cream/60">{restaurant.addressLine1}</p>
-            <button type="button" className="btn btn-gold w-full" onClick={() => { setMobileOpen(false); openCart(); }}>
-              Order Now
+            <button type="button" className="btn btn-gold w-full" onClick={() => goTo("contact")}>
+              Contact
             </button>
           </div>
         </div>

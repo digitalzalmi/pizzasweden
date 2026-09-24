@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { useCart } from "../context/CartContext";
+import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
 import PizzaCard from "./PizzaCard";
 import SectionReveal from "./SectionReveal";
 
 export default function Menu() {
   const { menu, menuCategories } = useContent();
-  const { menuQuery, setMenuQuery, highlightId, setHighlightId } = useCart();
+  const { menuQuery, setMenuQuery, highlightId, setHighlightId } = useUi();
   const [category, setCategory] = useState("All");
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Menu() {
         pizza.ingredients.some((item) => item.toLowerCase().includes(q));
       return categoryMatch && searchMatch;
     });
-  }, [category, menuQuery]);
+  }, [category, menuQuery, menu]);
 
   return (
     <SectionReveal id="menu" className="scroll-mt-24 bg-cream py-14 sm:py-20" aria-labelledby="menu-heading">
@@ -35,7 +35,7 @@ export default function Menu() {
             OUR FAVORITE PIZZAS
           </h2>
           <p className="mt-4 max-w-xl text-muted">
-            Built on rested dough and a blistering oven. Filter by style, pick a size, and add it to your order — prices shown in Swedish kronor (SEK).
+            Built on rested dough and a blistering oven. Filter by style and pick a size to see prices in Swedish kronor (SEK).
           </p>
         </div>
 

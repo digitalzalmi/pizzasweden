@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { useCart } from "../context/CartContext";
 import { useContent } from "../context/ContentContext";
 import { formatPrice } from "../utils/format";
 import SectionReveal from "./SectionReveal";
@@ -18,7 +17,6 @@ function findOption(list, id) {
 
 export default function PizzaBuilder() {
   const { builderOptions, images } = useContent();
-  const { addItem } = useCart();
   const [config, setConfig] = useState(defaults);
 
   const size = findOption(builderOptions.sizes, config.size);
@@ -28,6 +26,7 @@ export default function PizzaBuilder() {
   const toppings = builderOptions.toppings.filter((item) => config.toppings.includes(item.id));
 
   const lines = useMemo(() => {
+    if (!size || !crust || !sauce || !cheese) return [];
     const rows = [
       { label: `Base pizza (${size.label})`, amount: size.price },
     ];
@@ -50,20 +49,8 @@ export default function PizzaBuilder() {
     });
   }
 
-  function addCustomPizza() {
-    addItem({
-      pizzaId: `custom-${config.size}-${config.crust}-${config.sauce}-${config.cheese}-${config.toppings.join("-")}`,
-      name: "Custom House Pizza",
-      size: size.label,
-      price: total,
-      image: images.builderPreview,
-      extras: [
-        crust.label,
-        sauce.label,
-        cheese.label,
-        ...toppings.map((item) => item.label),
-      ],
-    });
+  function scrollToContact() {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -75,7 +62,7 @@ export default function PizzaBuilder() {
             BUILD YOUR PERFECT PIZZA
           </h2>
           <p className="mt-4 text-muted">
-            A frontend tasting pad — no account needed. Choose a size, crust, sauce, cheese, and toppings. The ticket on the right updates live.
+            Try combinations below — the ticket updates live. Call or visit us to place an order in person.
           </p>
           <div className="relative mt-6 overflow-hidden rounded-[1.25rem] sm:mt-8 sm:rounded-[1.8rem]">
             <img
@@ -160,8 +147,8 @@ export default function PizzaBuilder() {
               <span className="text-sm tracking-[0.16em] uppercase">Total</span>
               <span className="font-display text-3xl text-ink">{formatPrice(total)}</span>
             </p>
-            <button type="button" className="btn btn-gold mt-5 w-full" onClick={addCustomPizza}>
-              Add to Order
+            <button type="button" className="btn btn-gold mt-5 w-full" onClick={scrollToContact}>
+              Contact to order
             </button>
           </aside>
         </div>
