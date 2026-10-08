@@ -1,7 +1,7 @@
 {
   "restaurant": {
-    "name": "PIZZA HOUSE",
-    "shortName": "Pizza House",
+    "name": "SLICE OF PRIMA",
+    "shortName": "Slice of Prima",
     "tagline": "GOOD FOOD.\nGOOD MOOD.",
     "heroLabel": "FRESH FROM THE OVEN",
     "heroSupport": "Wood-fired pies, handmade dough, and toppings prepared daily in Main Market, Mardan. Sit in, take away, or let us bring the heat to your door.",
@@ -9,35 +9,38 @@
     "aboutLead": "A neighbourhood pizzeria with a serious oven and a simple rule: if it is not fresh, it does not go on the pie.",
     "aboutBody": [
       "Every morning we mill, mix, and rest our dough the slow way. It is stretched by hand, never pressed, then finished in a blistering oven so the crust stays crisp at the edge and tender in the centre.",
-      "Sauces are simmered in small batches. Cheese is layered, not dumped. Chicken, beef, and vegetables are sourced locally whenever we can, then seasoned in-house. Traditional Italian technique meets the flavours people in Mardan actually crave.",
+      "Sauces are simmered in small batches. Cheese is layered, not dumped. Chicken, beef, and vegetables are sourced locally whenever we can, then seasoned in-house. Traditional Italian technique meets the flavours people actually crave.",
       "Whether you are here for a quiet lunch, a family table, or a late-night order, the standard stays the same: honest ingredients, careful heat, and pizza that tastes like someone cared."
     ],
     "aboutStats": [
       {
         "value": "2019",
-        "label": "Opened in Mardan"
+        "label": "Opened in Mardan",
+        "labelSv": "Öppnade 2019"
       },
       {
         "value": "8 hrs",
-        "label": "Dough rest time"
+        "label": "Dough rest time",
+        "labelSv": "Degvila"
       },
       {
         "value": "12 am",
-        "label": "Kitchen closes"
+        "label": "Kitchen closes",
+        "labelSv": "Köket stänger"
       }
     ],
-    "addressLine1": "Main Market, Mardan",
-    "addressLine2": "Khyber Pakhtunkhwa, Pakistan",
-    "phoneDisplay": "+92 XXX XXXXXXX",
-    "phoneTel": "+92XXXXXXXXXX",
+    "addressLine1": "Tingvallavägen 11,19531 Märsta",
+    "addressLine2": "",
+    "phoneDisplay": "08-15 55 01",
+    "phoneTel": "08155501",
     "email": "hello@pizzahouse.pk",
     "hoursTitle": "Monday – Sunday",
     "hoursTime": "11:00 AM – 12:00 AM",
     "hoursNote": "Kitchen last call 11:30 PM",
     "mapsQuery": "Main Market, Mardan, Khyber Pakhtunkhwa, Pakistan",
-    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Main+Market+Mardan+Khyber+Pakhtunkhwa",
+    "mapsUrl": "https://share.google/25o96kUoAHBje22gw",
     "footerBlurb": "Handmade pizza from Main Market, Mardan. Fresh dough, a hot oven, and orders that actually arrive hot.",
-    "copyright": "© 2026 Pizza House. All rights reserved.",
+    "copyright": "© 2026 Slice of Prima. All rights reserved.",
     "nav": [
       {
         "id": "home",
@@ -59,22 +62,35 @@
         "id": "contact",
         "label": "Contact"
       }
-    ]
+    ],
+    "taglineSv": "GOD MAT.\nGOTT HUMÖR.",
+    "heroLabelSv": "NYBAKAT FRÅN UGNEN",
+    "heroSupportSv": "Vedeldad pizza, handgjord deg och toppingar som tillagas varje dag. Ät här, ta med eller låt oss leverera värmen till dörren.",
+    "aboutTitleSv": "GJORT MED PASSION",
+    "aboutLeadSv": "En pizzeria i kvarteret med en seriös ugn och en enkel regel: är det inte färskt, hamnar det inte på pizzan.",
+    "aboutBodySv": [
+      "Varje morgon maler, blandar och vilar vi degen långsamt. Den sträcks för hand, aldrig pressad, och gräddas i het ugn så att kanten blir knaprig och mitten mjuk.",
+      "Såserna sjuder i små satser. Osten läggs i lager, inte dumpas. Kyckling, nötkött och grönsaker köps lokalt när det går och kryddas i huset. Italiensk teknik möter smaker folk verkligen längtar efter.",
+      "Om du är här för en lugn lunch, ett familjebord eller en sen beställning är standarden densamma: ärliga råvaror, rätt värme och pizza som smakar som någon brydde sig."
+    ],
+    "hoursTitleSv": "Måndag – söndag",
+    "hoursTimeSv": "11:00 – 00:00",
+    "hoursNoteSv": "Sista beställning 23:30",
+    "footerBlurbSv": "Handgjord pizza med färsk deg, het ugn och beställningar som faktiskt kommer fram varma.",
+    "copyrightSv": "© 2026 Slice of Prima. Alla rättigheter förbehållna."
   },
   "menu": [
     {
       "id": 1,
       "name": "Margherita Classica",
-      "category": "Classic",
+      "nameSv": "Margherita Classica",
+      "category": "Pizza",
       "description": "San Marzano tomato, fior di latte, torn basil, and a thread of olive oil.",
-      "price": 799,
-      "sizes": {
-        "small": 599,
-        "medium": 799,
-        "large": 1099
-      },
+      "descriptionSv": "San Marzano-tomat, fior di latte, basilika och en skvätt olivolja.",
+      "price": 99,
       "image": "/images/margherita.jpg",
       "badge": "Popular",
+      "badgeSv": "Populär",
       "ingredients": [
         "Tomato",
         "Mozzarella",
@@ -87,16 +103,14 @@
     {
       "id": 2,
       "name": "Pepperoni Ember",
-      "category": "Classic",
+      "nameSv": "Pepperoni Ember",
+      "category": "Pizza",
       "description": "Crisped pepperoni cups, mozzarella, and a slow-cooked tomato base.",
-      "price": 999,
-      "sizes": {
-        "small": 799,
-        "medium": 999,
-        "large": 1299
-      },
+      "descriptionSv": "Krispig pepperoni, mozzarella och långkokt tomatsås.",
+      "price": 119,
       "image": "/images/pepperoni.jpg",
       "badge": "Popular",
+      "badgeSv": "Populär",
       "ingredients": [
         "Pepperoni",
         "Mozzarella",
@@ -109,14 +123,11 @@
     {
       "id": 3,
       "name": "Four Cheese Vault",
-      "category": "Classic",
+      "nameSv": "Fyra ostar",
+      "category": "Pizza",
       "description": "Mozzarella, cheddar, parmesan, and ricotta on a garlic-brushed crust.",
-      "price": 1099,
-      "sizes": {
-        "small": 899,
-        "medium": 1099,
-        "large": 1399
-      },
+      "descriptionSv": "Mozzarella, cheddar, parmesan och ricotta på vitlökssmord botten.",
+      "price": 129,
       "image": "/images/cheese.jpg",
       "badge": "",
       "ingredients": [
@@ -131,16 +142,14 @@
     {
       "id": 4,
       "name": "Smoky BBQ Chicken",
-      "category": "Chicken",
+      "nameSv": "Rökig BBQ-kyckling",
+      "category": "Pizza",
       "description": "Charred chicken, smoked BBQ glaze, red onion, and coriander.",
-      "price": 899,
-      "sizes": {
-        "small": 699,
-        "medium": 899,
-        "large": 1199
-      },
+      "descriptionSv": "Grillad kyckling, rökig BBQ-glaze, rödlök och koriander.",
+      "price": 129,
       "image": "/images/bbq.jpg",
       "badge": "Popular",
+      "badgeSv": "Populär",
       "ingredients": [
         "Chicken",
         "BBQ sauce",
@@ -154,16 +163,14 @@
     {
       "id": 5,
       "name": "Mardan Tikka Fire",
-      "category": "Chicken",
+      "nameSv": "Tikka Fire",
+      "category": "Pizza",
       "description": "Tandoori tikka chicken, green chilli, onion, and a cooling mint drizzle.",
-      "price": 999,
-      "sizes": {
-        "small": 799,
-        "medium": 999,
-        "large": 1299
-      },
+      "descriptionSv": "Tandoori tikka-kyckling, grön chili, lök och svalkande myntadressing.",
+      "price": 139,
       "image": "/images/tikka.jpg",
       "badge": "Spicy",
+      "badgeSv": "Stark",
       "ingredients": [
         "Tikka chicken",
         "Green chilli",
@@ -176,129 +183,15 @@
     },
     {
       "id": 6,
-      "name": "Malai Boti Cream",
-      "category": "Chicken",
-      "description": "White malai sauce, tender boti chicken, mozzarella, and cracked pepper.",
-      "price": 1099,
-      "sizes": {
-        "small": 899,
-        "medium": 1099,
-        "large": 1399
-      },
-      "image": "/images/malai.jpg",
-      "badge": "New",
-      "ingredients": [
-        "Malai chicken",
-        "White sauce",
-        "Mozzarella",
-        "Black pepper"
-      ],
-      "rating": 4.6,
-      "available": true
-    },
-    {
-      "id": 7,
-      "name": "Seekh Kebab Heat",
-      "category": "Beef",
-      "description": "Spiced seekh kebab, caramelised onion, tomato, and chilli oil.",
-      "price": 1199,
-      "sizes": {
-        "small": 949,
-        "medium": 1199,
-        "large": 1499
-      },
-      "image": "/images/seekh.jpg",
-      "badge": "Chef's Pick",
-      "ingredients": [
-        "Beef seekh",
-        "Onion",
-        "Tomato",
-        "Chilli oil",
-        "Mozzarella"
-      ],
-      "rating": 4.8,
-      "available": true
-    },
-    {
-      "id": 8,
-      "name": "Pepper Beef Night",
-      "category": "Beef",
-      "description": "Slow-cooked beef, cracked pepper sauce, mushrooms, and mozzarella.",
-      "price": 1299,
-      "sizes": {
-        "small": 999,
-        "medium": 1299,
-        "large": 1599
-      },
-      "image": "/images/beef.jpg",
-      "badge": "",
-      "ingredients": [
-        "Beef",
-        "Pepper sauce",
-        "Mushroom",
-        "Mozzarella"
-      ],
-      "rating": 4.7,
-      "available": true
-    },
-    {
-      "id": 9,
-      "name": "Garden Harvest",
-      "category": "Vegetarian",
-      "description": "Roasted peppers, olives, onion, mushrooms, and fresh basil.",
-      "price": 849,
-      "sizes": {
-        "small": 649,
-        "medium": 849,
-        "large": 1149
-      },
-      "image": "/images/veggie.jpg",
-      "badge": "",
-      "ingredients": [
-        "Bell pepper",
-        "Olives",
-        "Onion",
-        "Mushroom",
-        "Basil"
-      ],
-      "rating": 4.6,
-      "available": true
-    },
-    {
-      "id": 10,
-      "name": "Truffle Forest",
-      "category": "Vegetarian",
-      "description": "Wild mushrooms, truffle oil, thyme, and a blanket of mozzarella.",
-      "price": 1199,
-      "sizes": {
-        "small": 949,
-        "medium": 1199,
-        "large": 1499
-      },
-      "image": "/images/mushroom.jpg",
-      "badge": "Chef's Pick",
-      "ingredients": [
-        "Mushroom",
-        "Truffle oil",
-        "Thyme",
-        "Mozzarella"
-      ],
-      "rating": 4.8,
-      "available": true
-    },
-    {
-      "id": 11,
       "name": "House Fire Special",
-      "category": "Specials",
+      "nameSv": "Husets special",
+      "category": "Pizza",
       "description": "Pepperoni, tikka chicken, jalapeño, extra cheese, and house chilli honey.",
-      "price": 1399,
-      "sizes": {
-        "small": 1099,
-        "medium": 1399,
-        "large": 1699
-      },
+      "descriptionSv": "Pepperoni, tikka-kyckling, jalapeño, extra ost och husets chilihonung.",
+      "price": 149,
       "image": "/images/special.jpg",
-      "badge": "Popular",
+      "badge": "Chef's Pick",
+      "badgeSv": "Kockens val",
       "ingredients": [
         "Pepperoni",
         "Chicken",
@@ -310,127 +203,492 @@
       "available": true
     },
     {
-      "id": 12,
-      "name": "Fajita Sunset",
-      "category": "Specials",
-      "description": "Fajita chicken, peppers, onion, cheddar melt, and a lime crema finish.",
-      "price": 1149,
-      "sizes": {
-        "small": 899,
-        "medium": 1149,
-        "large": 1449
-      },
-      "image": "/images/fajita.jpg",
-      "badge": "New",
-      "available": true,
+      "id": 7,
+      "name": "Family Margherita",
+      "nameSv": "Familj Margherita",
+      "category": "Family Pizza",
+      "description": "Oven-wide margherita built to share — tomato, mozzarella, and fresh basil.",
+      "descriptionSv": "Stor margherita att dela — tomat, mozzarella och färsk basilika.",
+      "price": 249,
+      "image": "/images/margherita.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
       "ingredients": [
-        "Fajita chicken",
-        "Peppers",
-        "Onion",
-        "Cheddar",
-        "Lime crema"
+        "Tomato",
+        "Mozzarella",
+        "Basil"
       ],
-      "rating": 4.7
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 8,
+      "name": "Family Pepperoni Feast",
+      "nameSv": "Familj Pepperoni",
+      "category": "Family Pizza",
+      "description": "Extra-large pepperoni pie with melted mozzarella for the whole table.",
+      "descriptionSv": "Extra stor pepperoni med smält mozzarella för hela bordet.",
+      "price": 279,
+      "image": "/images/pepperoni.jpg",
+      "badge": "",
+      "ingredients": [
+        "Pepperoni",
+        "Mozzarella",
+        "Tomato"
+      ],
+      "rating": 4.9,
+      "available": true
+    },
+    {
+      "id": 9,
+      "name": "Family Mixed Special",
+      "nameSv": "Familj Mixspecial",
+      "category": "Family Pizza",
+      "description": "Sharing-size house special with chicken, pepperoni, peppers, and extra cheese.",
+      "descriptionSv": "Delningsstor husets special med kyckling, pepperoni, paprika och extra ost.",
+      "price": 299,
+      "image": "/images/special.jpg",
+      "badge": "Chef's Pick",
+      "badgeSv": "Kockens val",
+      "ingredients": [
+        "Chicken",
+        "Pepperoni",
+        "Peppers",
+        "Extra cheese"
+      ],
+      "rating": 4.9,
+      "available": true
+    },
+    {
+      "id": 10,
+      "name": "Family BBQ Chicken",
+      "nameSv": "Familj BBQ-kyckling",
+      "category": "Family Pizza",
+      "description": "Family tray of BBQ chicken pizza with smoked glaze and red onion.",
+      "descriptionSv": "Familjebricka med BBQ-kycklingpizza, rökig glaze och rödlök.",
+      "price": 289,
+      "image": "/images/bbq.jpg",
+      "badge": "New",
+      "badgeSv": "Nyhet",
+      "ingredients": [
+        "Chicken",
+        "BBQ sauce",
+        "Red onion",
+        "Mozzarella"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 11,
+      "name": "Creamy Alfredo Pasta",
+      "nameSv": "Krämig Alfredo-pasta",
+      "category": "Pasta",
+      "description": "Fettuccine in a rich alfredo cream with parmesan and cracked pepper.",
+      "descriptionSv": "Fettuccine i krämig alfredosås med parmesan och nymalen peppar.",
+      "price": 109,
+      "image": "/images/cheese.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
+      "ingredients": [
+        "Fettuccine",
+        "Cream",
+        "Parmesan",
+        "Black pepper"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 12,
+      "name": "Spaghetti Bolognese",
+      "nameSv": "Spaghetti Bolognese",
+      "category": "Pasta",
+      "description": "Slow-simmered beef sauce over spaghetti with fresh herbs.",
+      "descriptionSv": "Långkokt köttfärssås över spaghetti med färska örter.",
+      "price": 119,
+      "image": "/images/beef.jpg",
+      "badge": "",
+      "ingredients": [
+        "Spaghetti",
+        "Beef",
+        "Tomato",
+        "Herbs"
+      ],
+      "rating": 4.6,
+      "available": true
     },
     {
       "id": 13,
-      "name": "Saffron Seasonal",
-      "category": "Specials",
-      "description": "Limited oven run with saffron cream, roasted chicken, and pistachio dust.",
-      "price": 1499,
-      "sizes": {
-        "small": 1199,
-        "medium": 1499,
-        "large": 1799
-      },
-      "image": "/images/margherita.jpg",
-      "badge": "Seasonal",
+      "name": "Chicken Arrabbiata",
+      "nameSv": "Kyckling Arrabbiata",
+      "category": "Pasta",
+      "description": "Spicy tomato pasta with grilled chicken, chilli, and garlic.",
+      "descriptionSv": "Stark tomatpasta med grillad kyckling, chili och vitlök.",
+      "price": 129,
+      "image": "/images/tikka.jpg",
+      "badge": "Spicy",
+      "badgeSv": "Stark",
       "ingredients": [
-        "Saffron cream",
+        "Penne",
         "Chicken",
-        "Pistachio",
-        "Mozzarella"
+        "Chilli",
+        "Tomato",
+        "Garlic"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 14,
+      "name": "Classic Beef Burger",
+      "nameSv": "Klassisk nöthamburger",
+      "category": "Burger",
+      "description": "Juicy beef patty, cheddar, lettuce, tomato, and house sauce in a toasted bun.",
+      "descriptionSv": "Saftig nötbiff, cheddar, sallad, tomat och husets sås i rostade bröd.",
+      "price": 99,
+      "image": "/images/beef.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
+      "ingredients": [
+        "Beef",
+        "Cheddar",
+        "Lettuce",
+        "Tomato",
+        "House sauce"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 15,
+      "name": "Chicken Smash Burger",
+      "nameSv": "Kyckling Smash Burger",
+      "category": "Burger",
+      "description": "Crispy chicken fillet, pickles, mayo, and cheddar on a soft bun.",
+      "descriptionSv": "Krispig kycklingfilé, pickles, majonnäs och cheddar i mjukt bröd.",
+      "price": 109,
+      "image": "/images/bbq.jpg",
+      "badge": "New",
+      "badgeSv": "Nyhet",
+      "ingredients": [
+        "Chicken",
+        "Cheddar",
+        "Pickles",
+        "Mayo"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 16,
+      "name": "Spicy Fire Burger",
+      "nameSv": "Stark Fire Burger",
+      "category": "Burger",
+      "description": "Beef patty with jalapeño, chilli mayo, onion, and melted cheese.",
+      "descriptionSv": "Nötbiff med jalapeño, chimajonnäs, lök och smält ost.",
+      "price": 119,
+      "image": "/images/special.jpg",
+      "badge": "Spicy",
+      "badgeSv": "Stark",
+      "ingredients": [
+        "Beef",
+        "Jalapeño",
+        "Chilli mayo",
+        "Onion",
+        "Cheese"
+      ],
+      "rating": 4.6,
+      "available": true
+    },
+    {
+      "id": 17,
+      "name": "Garden Fresh Salad",
+      "nameSv": "Trädgårdssallad",
+      "category": "Salad",
+      "description": "Mixed greens, cucumber, tomato, olives, and a light house vinaigrette.",
+      "descriptionSv": "Blandad sallad, gurka, tomat, oliver och lätt husets vinaigrette.",
+      "price": 79,
+      "image": "/images/veggie.jpg",
+      "badge": "",
+      "ingredients": [
+        "Greens",
+        "Cucumber",
+        "Tomato",
+        "Olives",
+        "Vinaigrette"
+      ],
+      "rating": 4.5,
+      "available": true
+    },
+    {
+      "id": 18,
+      "name": "Chicken Caesar Salad",
+      "nameSv": "Kyckling Caesarsallad",
+      "category": "Salad",
+      "description": "Crisp romaine, grilled chicken, croutons, parmesan, and caesar dressing.",
+      "descriptionSv": "Krispig romansallad, grillad kyckling, krutonger, parmesan och caesardressing.",
+      "price": 99,
+      "image": "/images/malai.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
+      "ingredients": [
+        "Romaine",
+        "Chicken",
+        "Croutons",
+        "Parmesan",
+        "Caesar"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 19,
+      "name": "Greek Village Salad",
+      "nameSv": "Grekisk bysallad",
+      "category": "Salad",
+      "description": "Tomato, cucumber, onion, feta, and olives with oregano oil.",
+      "descriptionSv": "Tomat, gurka, lök, feta och oliver med oreganoolja.",
+      "price": 89,
+      "image": "/images/mushroom.jpg",
+      "badge": "",
+      "ingredients": [
+        "Tomato",
+        "Cucumber",
+        "Onion",
+        "Feta",
+        "Olives"
+      ],
+      "rating": 4.6,
+      "available": true
+    },
+    {
+      "id": 20,
+      "name": "Chicken Tikka Roll",
+      "nameSv": "Kyckling Tikka-rulle",
+      "category": "Chicken Rolls",
+      "description": "Soft wrap filled with tikka chicken, onion, salad, and mint yoghurt.",
+      "descriptionSv": "Mjuk wrap med tikka-kyckling, lök, sallad och myntayoghurt.",
+      "price": 79,
+      "image": "/images/tikka.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
+      "ingredients": [
+        "Tikka chicken",
+        "Onion",
+        "Salad",
+        "Mint yoghurt"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 21,
+      "name": "BBQ Chicken Roll",
+      "nameSv": "BBQ-kycklingrulle",
+      "category": "Chicken Rolls",
+      "description": "Smoky BBQ chicken wrap with cheese and crisp vegetables.",
+      "descriptionSv": "Rökig BBQ-kycklingwrap med ost och krispiga grönsaker.",
+      "price": 85,
+      "image": "/images/bbq.jpg",
+      "badge": "",
+      "ingredients": [
+        "BBQ chicken",
+        "Cheese",
+        "Vegetables"
+      ],
+      "rating": 4.7,
+      "available": true
+    },
+    {
+      "id": 22,
+      "name": "Malai Chicken Roll",
+      "nameSv": "Malai-kycklingrulle",
+      "category": "Chicken Rolls",
+      "description": "Creamy malai chicken, mild spices, and fresh salad in a warm roll.",
+      "descriptionSv": "Krämig malai-kyckling, milda kryddor och färsk sallad i varm rulle.",
+      "price": 89,
+      "image": "/images/malai.jpg",
+      "badge": "New",
+      "badgeSv": "Nyhet",
+      "ingredients": [
+        "Malai chicken",
+        "Salad",
+        "Mild spices"
+      ],
+      "rating": 4.6,
+      "available": true
+    },
+    {
+      "id": 23,
+      "name": "Seekh Kebab Roll",
+      "nameSv": "Seekh kebab-rulle",
+      "category": "Kebab Rolls",
+      "description": "Spiced seekh kebab wrap with onion, tomato, and chilli sauce.",
+      "descriptionSv": "Kryddad seekh kebab-wrap med lök, tomat och chilisås.",
+      "price": 89,
+      "image": "/images/seekh.jpg",
+      "badge": "Chef's Pick",
+      "badgeSv": "Kockens val",
+      "ingredients": [
+        "Seekh kebab",
+        "Onion",
+        "Tomato",
+        "Chilli sauce"
       ],
       "rating": 4.9,
-      "available": false
+      "available": true
+    },
+    {
+      "id": 24,
+      "name": "Beef Kebab Roll",
+      "nameSv": "Nötkebab-rulle",
+      "category": "Kebab Rolls",
+      "description": "Tender beef kebab, herbs, salad, and garlic sauce in a soft wrap.",
+      "descriptionSv": "Mör nötkebab, örter, sallad och vitlökssås i mjuk wrap.",
+      "price": 95,
+      "image": "/images/beef.jpg",
+      "badge": "Popular",
+      "badgeSv": "Populär",
+      "ingredients": [
+        "Beef kebab",
+        "Herbs",
+        "Salad",
+        "Garlic sauce"
+      ],
+      "rating": 4.8,
+      "available": true
+    },
+    {
+      "id": 25,
+      "name": "Mixed Kebab Roll",
+      "nameSv": "Mixad kebab-rulle",
+      "category": "Kebab Rolls",
+      "description": "Chicken and beef kebab mix with fresh salad and house chutney.",
+      "descriptionSv": "Mix av kyckling- och nötkebab med färsk sallad och husets chutney.",
+      "price": 99,
+      "image": "/images/fajita.jpg",
+      "badge": "Spicy",
+      "badgeSv": "Stark",
+      "ingredients": [
+        "Chicken kebab",
+        "Beef kebab",
+        "Salad",
+        "Chutney"
+      ],
+      "rating": 4.7,
+      "available": true
     }
   ],
   "menuCategories": [
     "All",
-    "Classic",
-    "Chicken",
-    "Beef",
-    "Vegetarian",
-    "Specials"
+    "Pizza",
+    "Family Pizza",
+    "Pasta",
+    "Burger",
+    "Salad",
+    "Chicken Rolls",
+    "Kebab Rolls"
   ],
   "heroSlides": [
     {
       "src": "/images/dining.jpg",
-      "alt": "Warm dining room at Pizza House in Main Market, Mardan",
+      "alt": "Warm dining room at Pizza House",
+      "altSv": "Varm matsal hos Pizza House",
       "kicker": "The table",
-      "caption": "A neighbourhood room, lit for pizza."
+      "kickerSv": "Bordet",
+      "caption": "A neighbourhood room, lit for pizza.",
+      "captionSv": "Ett kvartersrum, belyst för pizza."
     },
     {
       "src": "/images/hero.jpg",
       "alt": "Wood-fired pizza with melted cheese and blistered crust",
+      "altSv": "Vedeldad pizza med smält ost och blåsig skorpa",
       "kicker": "The pie",
-      "caption": "Pulled from the oven, not a holding rack."
+      "kickerSv": "Pizzan",
+      "caption": "Pulled from the oven, not a holding rack.",
+      "captionSv": "Direkt från ugnen — inte från en värmehylla."
     },
     {
       "src": "/images/kitchen.jpg",
       "alt": "Chef stretching handmade pizza dough",
+      "altSv": "Kock som sträcker handgjord pizzadeg",
       "kicker": "The craft",
-      "caption": "Dough rested, stretched by hand."
+      "kickerSv": "Hantverket",
+      "caption": "Dough rested, stretched by hand.",
+      "captionSv": "Deg som vilat och sträckts för hand."
     },
     {
       "src": "/images/pepperoni.jpg",
       "alt": "Pepperoni pizza with crisped cups and golden crust",
+      "altSv": "Pepperonipizza med krispiga kanter och gyllene skorpa",
       "kicker": "The heat",
-      "caption": "Serious fire. Honest toppings."
+      "kickerSv": "Värmen",
+      "caption": "Serious fire. Honest toppings.",
+      "captionSv": "Ordentlig eld. Ärliga toppingar."
     }
   ],
   "houseSlides": [
     {
       "src": "/images/kitchen.jpg",
       "alt": "Hands working pizza dough in the Pizza House kitchen",
+      "altSv": "Händer som arbetar pizzadeg i köket",
       "kicker": "Inside the house",
+      "kickerSv": "Inne i huset",
       "title": "Dough that takes its time",
-      "text": "Eight hours of rest before it ever sees the peel."
+      "titleSv": "Deg som tar sin tid",
+      "text": "Eight hours of rest before it ever sees the peel.",
+      "textSv": "Åtta timmars vila innan den når paddeln."
     },
     {
       "src": "/images/offer.jpg",
       "alt": "Overhead pizza with charred crust and fresh toppings",
+      "altSv": "Pizza ovanifrån med kolad skorpa och färska toppingar",
       "kicker": "From the oven",
+      "kickerSv": "Från ugnen",
       "title": "Finished in fire",
-      "text": "A blistered edge, a tender centre, served at once."
+      "titleSv": "Avslutad i eld",
+      "text": "A blistered edge, a tender centre, served at once.",
+      "textSv": "Blåsig kant, mjuk mitt — serverad direkt."
     },
     {
       "src": "/images/dining.jpg",
       "alt": "Guests dining in a warm restaurant interior",
+      "altSv": "Gäster som äter i en varm restaurang",
       "kicker": "Main Market",
+      "kickerSv": "Hos oss",
       "title": "Tables until midnight",
-      "text": "Stay in, take away, or send it across Mardan."
+      "titleSv": "Bord till midnatt",
+      "text": "Stay in, take away, or send it home.",
+      "textSv": "Ät här, ta med eller skicka hem."
     },
     {
       "src": "/images/special.jpg",
       "alt": "House special pizza ready to share",
+      "altSv": "Husets specialpizza redo att delas",
       "kicker": "For the table",
+      "kickerSv": "För bordet",
       "title": "Built for sharing",
-      "text": "Weekend deals, party trays, and late-night pies."
+      "titleSv": "Gjort för att delas",
+      "text": "Weekend deals, party trays, and late-night pies.",
+      "textSv": "Helgerbjudanden, festbrickor och sena pizzor."
     }
   ],
   "offerSlides": [
     {
       "src": "/images/offer.jpg",
-      "alt": "Weekend pizza deal featuring two pizzas"
+      "alt": "Weekend pizza deal featuring two pizzas",
+      "altSv": "Helgerbjudande med två pizzor"
     },
     {
       "src": "/images/bbq.jpg",
-      "alt": "Smoky BBQ chicken pizza"
+      "alt": "Smoky BBQ chicken pizza",
+      "altSv": "Rökig BBQ-kycklingpizza"
     },
     {
       "src": "/images/special.jpg",
-      "alt": "House fire special pizza"
+      "alt": "House fire special pizza",
+      "altSv": "Husets specialpizza"
     }
   ],
   "images": {
@@ -444,17 +702,28 @@
     {
       "id": "weekend-deal",
       "kicker": "Saturday & Sunday",
+      "kickerSv": "Lördag & söndag",
       "title": "WEEKEND PIZZA DEAL",
-      "headline": "2 Medium Pizzas + 2 Drinks",
-      "description": "Pick any two medium pies from the classic or chicken list, add two regular drinks, and keep the table happy without emptying the wallet.",
-      "price": 1999,
-      "originalPrice": 2598,
+      "titleSv": "HELGPIZZA-ERBJUDANDE",
+      "headline": "2 Pizzas + 2 Drinks",
+      "headlineSv": "2 pizzor + 2 drycker",
+      "description": "Pick any two pizzas from the list, add two regular drinks, and keep the table happy without emptying the wallet.",
+      "descriptionSv": "Välj två pizzor från menyn, lägg till två vanliga drycker och håll bordet glatt utan att tömma plånboken.",
+      "price": 199,
+      "originalPrice": 258,
       "cta": "Ask about this deal",
+      "ctaSv": "Fråga om erbjudandet",
       "note": "Dine-in, takeaway, and delivery. Add-ons billed separately.",
+      "noteSv": "Äta här, avhämtning och leverans. Tillägg debiteras separat.",
       "includes": [
-        "Any 2 medium pizzas",
+        "Any 2 pizzas",
         "2 regular drinks",
         "Garlic dip on the house"
+      ],
+      "includesSv": [
+        "Valfria 2 pizzor",
+        "2 vanliga drycker",
+        "Vitlöksdip på huset"
       ],
       "image": "/images/offer.jpg"
     }
@@ -465,40 +734,50 @@
       "name": "Ahmed",
       "city": "Mardan",
       "quote": "The crust was perfectly crispy and the toppings were fresh. BBQ chicken is the one I keep coming back for.",
+      "quoteSv": "Skorpan var perfekt knaprig och toppingarna färska. BBQ-kyckling är den jag alltid kommer tillbaka till.",
       "rating": 5,
-      "dish": "Smoky BBQ Chicken"
+      "dish": "Smoky BBQ Chicken",
+      "dishSv": "Rökig BBQ-kyckling"
     },
     {
       "id": 2,
       "name": "Ayesha",
       "city": "Mardan",
       "quote": "We ordered the weekend deal for a family dinner. Both pizzas arrived hot, and the garlic dip disappeared first.",
+      "quoteSv": "Vi beställde helgerbjudandet till familjemiddag. Båda pizzorna kom varma och vitlöksdippen försvann först.",
       "rating": 5,
-      "dish": "Weekend Deal"
+      "dish": "Weekend Deal",
+      "dishSv": "Helgerbjudande"
     },
     {
       "id": 3,
       "name": "Bilal",
       "city": "Takht Bhai",
-      "quote": "Seekh kebab pizza is properly spiced — not a bland meat topping. Delivery to Takht Bhai was still on time.",
+      "quote": "Seekh kebab pizza is properly spiced — not a bland meat topping. Delivery was still on time.",
+      "quoteSv": "Seekh kebab-pizzan är ordentligt kryddad — inte en smaklös köttröra. Leveransen kom i tid.",
       "rating": 5,
-      "dish": "Seekh Kebab Heat"
+      "dish": "Seekh Kebab Heat",
+      "dishSv": "Seekh kebab"
     },
     {
       "id": 4,
       "name": "Fatima",
       "city": "Mardan",
       "quote": "The Garden Harvest actually tastes like vegetables, not filler. Clean dining room, kind staff, easy takeaway.",
+      "quoteSv": "Garden Harvest smakar faktiskt grönsaker, inte fyllnad. Rent matsal, snäll personal, enkel avhämtning.",
       "rating": 4,
-      "dish": "Garden Harvest"
+      "dish": "Garden Harvest",
+      "dishSv": "Trädgårdsskörd"
     },
     {
       "id": 5,
       "name": "Usman",
       "city": "Mardan",
       "quote": "Late-night order after 11 and it still came with a blistered crust. That oven is the real difference.",
+      "quoteSv": "Sen beställning efter elva och den kom ändå med blåsig skorpa. Ugnen gör skillnaden.",
       "rating": 5,
-      "dish": "Pepperoni Ember"
+      "dish": "Pepperoni Ember",
+      "dishSv": "Pepperoni"
     }
   ],
   "testimonialsNote": "Sample guest comments for demonstration. Replace them with real reviews in the owner panel.",
@@ -506,25 +785,33 @@
     {
       "id": "fresh",
       "title": "Fresh Ingredients",
+      "titleSv": "Färska råvaror",
       "description": "Produce prepped daily. No tired toppings from yesterday's tray.",
+      "descriptionSv": "Råvaror som tillagas varje dag. Inga trötta toppingar från gårdagen.",
       "icon": "fresh"
     },
     {
       "id": "fast",
       "title": "Fast Delivery",
-      "description": "Mardan routes we actually know. Pies leave the oven, not a holding rack.",
+      "titleSv": "Snabb leverans",
+      "description": "Routes we actually know. Pies leave the oven, not a holding rack.",
+      "descriptionSv": "Rutter vi faktiskt kan. Pizzan lämnar ugnen — inte en värmehylla.",
       "icon": "fast"
     },
     {
       "id": "handcrafted",
       "title": "Handcrafted Pizza",
+      "titleSv": "Handgjord pizza",
       "description": "Dough rested, stretched by hand, and finished in serious heat.",
+      "descriptionSv": "Deg som vilat, sträckts för hand och gräddats i ordentlig värme.",
       "icon": "handcrafted"
     },
     {
       "id": "quality",
       "title": "Quality Guaranteed",
+      "titleSv": "Kvalitetsgaranti",
       "description": "If a pie is not right, we remake it. That is the house rule.",
+      "descriptionSv": "Är pizzan inte rätt bakar vi om den. Det är husregeln.",
       "icon": "quality"
     }
   ],
@@ -532,26 +819,35 @@
     {
       "id": "dine-in",
       "title": "Dine In",
+      "titleSv": "Äta här",
       "description": "Warm tables, a view of the oven, and pizza served the moment it leaves the peel.",
+      "descriptionSv": "Varma bord, sikt mot ugnen och pizza serverad direkt från paddeln.",
       "icon": "dine"
     },
     {
       "id": "delivery",
       "title": "Home Delivery",
-      "description": "Hot bags, clear ETAs, and coverage across Mardan for lunch through late night.",
+      "titleSv": "Hemleverans",
+      "description": "Hot bags, clear ETAs, and coverage for lunch through late night.",
+      "descriptionSv": "Varma väskor, tydliga tider och leverans från lunch till sen kväll.",
       "icon": "delivery"
     },
     {
       "id": "takeaway",
       "title": "Takeaway",
+      "titleSv": "Avhämtning",
       "description": "Call ahead or stop by. Pies boxed firm so the crust survives the ride home.",
+      "descriptionSv": "Ring i förväg eller kom förbi. Pizzorna packas så att skorpan håller hela vägen hem.",
       "icon": "takeaway"
     },
     {
       "id": "party",
       "title": "Party Orders",
+      "titleSv": "Festbeställningar",
       "description": "Office lunches, birthdays, and bulk trays. Tell us the headcount — we will plan the oven.",
+      "descriptionSv": "Kontorslunch, födelsedagar och stora brickor. Säg hur många ni är — vi planerar ugnen.",
       "icon": "party"
     }
-  ]
+  ],
+  "testimonialsNoteSv": "Exempel på gästkommentarer. Byt ut dem mot riktiga recensioner i ägarpanelen."
 }

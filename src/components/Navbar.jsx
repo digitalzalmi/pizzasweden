@@ -2,12 +2,15 @@ import { useEffect, useState } from "react";
 import { FiMenu, FiSearch, FiX } from "react-icons/fi";
 import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
+import { useT } from "../i18n";
 import PizzaLogo from "./PizzaLogo";
 import SearchModal from "./SearchModal";
+import LanguageToggle from "./LanguageToggle";
 
 export default function Navbar() {
   const { restaurant } = useContent();
   const { setSearchOpen, searchOpen } = useUi();
+  const { t, navLabel, L } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -40,11 +43,11 @@ export default function Navbar() {
             : "bg-transparent text-cream"
         }`}
       >
-        <nav className="container-site flex h-14 items-center justify-between gap-2 sm:h-16 sm:gap-3" aria-label="Primary">
-          <a href="#home" className="flex min-w-0 items-center gap-2 no-underline sm:gap-2" onClick={() => goTo("home")}>
-            <PizzaLogo className="h-7 w-7 shrink-0 sm:h-8 sm:w-8" />
+        <nav className="container-site flex h-14 items-center justify-between gap-2 sm:h-16 sm:gap-3" aria-label={t("navAria")}>
+          <a href="#home" className="flex min-w-0 items-center gap-2.5 no-underline sm:gap-3" onClick={() => goTo("home")}>
+            <PizzaLogo className="h-10 w-10 shrink-0 sm:h-12 sm:w-12" />
             <span className="font-display truncate text-[0.82rem] font-semibold tracking-[0.08em] text-gold sm:text-[1rem] sm:tracking-[0.14em]">
-              {restaurant.name}
+              {restaurant.shortName || restaurant.name}
             </span>
           </a>
 
@@ -55,30 +58,31 @@ export default function Navbar() {
                   href={`#${item.id}`}
                   className="text-[0.68rem] font-semibold tracking-[0.14em] text-cream/80 uppercase no-underline transition-colors hover:text-gold"
                 >
-                  {item.label}
+                  {navLabel(item.id, item.label)}
                 </a>
               </li>
             ))}
           </ul>
 
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1.5">
+            <LanguageToggle className="hidden sm:inline-flex" />
             <button
               type="button"
               className="grid h-9 w-9 place-items-center rounded-full text-cream transition-colors hover:bg-white/10 hover:text-gold"
-              aria-label="Search the menu"
+              aria-label={t("searchMenu")}
               onClick={() => setSearchOpen(true)}
             >
               <FiSearch size={16} />
             </button>
             <button type="button" className="btn btn-gold hidden md:inline-flex" onClick={() => goTo("contact")}>
-              Contact
+              {t("contact")}
             </button>
             <button
               type="button"
               className="grid h-9 w-9 place-items-center rounded-full lg:hidden"
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-label={mobileOpen ? t("closeMenu") : t("openMenu")}
               onClick={() => setMobileOpen((open) => !open)}
             >
               {mobileOpen ? <FiX size={20} /> : <FiMenu size={20} />}
@@ -104,15 +108,16 @@ export default function Navbar() {
                   className="font-display w-full py-2 text-left text-[clamp(1.55rem,6.5vw,2rem)] text-cream sm:py-2.5"
                   onClick={() => goTo(item.id)}
                 >
-                  {item.label}
+                  {navLabel(item.id, item.label)}
                 </button>
               </li>
             ))}
           </ul>
           <div className="mt-auto flex flex-col gap-3">
-            <p className="text-sm text-cream/60">{restaurant.addressLine1}</p>
+            <LanguageToggle />
+            <p className="text-sm text-cream/60">{L(restaurant, "addressLine1") || restaurant.addressLine1}</p>
             <button type="button" className="btn btn-gold w-full" onClick={() => goTo("contact")}>
-              Contact
+              {t("contact")}
             </button>
           </div>
         </div>

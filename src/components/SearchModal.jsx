@@ -2,11 +2,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { FiSearch, FiX } from "react-icons/fi";
 import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
+import { useT } from "../i18n";
 import { formatPrice } from "../utils/format";
 
 export default function SearchModal() {
   const { menu } = useContent();
   const { setSearchOpen, setMenuQuery, setHighlightId } = useUi();
+  const { t, L, categoryLabel } = useT();
   const inputRef = useRef(null);
   const [query, setQuery] = useState("");
 
@@ -21,21 +23,29 @@ export default function SearchModal() {
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return menu.filter((pizza) => {
-      if (!q) return pizza.available;
+    return menu.filter((dish) => {
+      if (!q) return dish.available;
+      const ingredients = dish.ingredients || [];
+      const name = String(L(dish, "name") || dish.name || "").toLowerCase();
+      const description = String(L(dish, "description") || "").toLowerCase();
       return (
-        pizza.name.toLowerCase().includes(q) ||
-        pizza.category.toLowerCase().includes(q) ||
-        pizza.ingredients.some((item) => item.toLowerCase().includes(q))
+        name.includes(q) ||
+        description.includes(q) ||
+        dish.category.toLowerCase().includes(q) ||
+        categoryLabel(dish.category).toLowerCase().includes(q) ||
+        ingredients.some((item) => item.toLowerCase().includes(q))
       );
     });
-  }, [query]);
+  }, [query, menu, L, categoryLabel]);
 
-  function choose(pizza) {
-    setMenuQuery(pizza.name);
-    setHighlightId(pizza.id);
+  function choose(dish) {
+    setMenuQuery(L(dish, "name") || dish.name);
+    setHighlightId(dish.id);
     setSearchOpen(false);
     document.getElementById("menu")?.scrollIntoView({ behavior: "smooth" });
+    requestAnimationFrame(() => {
+      document.getElementById(`menu-${dish.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   }
 
   return (
@@ -48,12 +58,12 @@ export default function SearchModal() {
       <button
         type="button"
         className="absolute inset-0 cursor-default"
-        aria-label="Close search"
+        aria-label={t("closeSearch")}
         onClick={() => setSearchOpen(false)}
       />
       <div className="relative w-full max-w-xl rounded-2xl bg-paper p-5 shadow-2xl">
         <h2 id="search-title" className="sr-only">
-          Search the menu
+          {t("searchTitle")}
         </h2>
         <div className="flex items-center gap-3 border-b border-line pb-3">
           <FiSearch className="text-muted" aria-hidden="true" />
@@ -61,42 +71,42 @@ export default function SearchModal() {
             ref={inputRef}
             type="search"
             value={query}
-            placeholder="Search pizzas, toppings, categories…"
+            placeholder={t("searchPlaceholder")}
             className="w-full bg-transparent text-base outline-none"
             onChange={(event) => {
               setQuery(event.target.value);
               setMenuQuery(event.target.value);
             }}
-            aria-label="Search pizzas"
+            aria-label={t("searchTitle")}
           />
           <button
             type="button"
             className="grid h-8 w-8 place-items-center rounded-full hover:bg-cream"
-            aria-label="Close search"
+            aria-label={t("closeSearch")}
             onClick={() => setSearchOpen(false)}
           >
             <FiX />
           </button>
         </div>
         <ul className="mt-3 max-h-[50vh] overflow-auto">
-          {results.map((pizza) => (
-            <li key={pizza.id}>
+          {results.map((dish) => (
+            <li key={dish.id}>
               <button
                 type="button"
                 className="flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left hover:bg-cream"
-                onClick={() => choose(pizza)}
+                onClick={() => choose(dish)}
               >
-                <img src={pizza.image} alt="" className="h-12 w-12 rounded-lg object-cover" />
+                <img src={dish.image} alt="" className="h-12 w-12 rounded-lg object-cover" />
                 <span className="flex-1">
-                  <span className="block font-semibold text-ink">{pizza.name}</span>
-                  <span className="text-sm text-muted">{pizza.category}</span>
+                  <span className="block font-semibold text-ink">{L(dish, "name")}</span>
+                  <span className="text-sm text-muted">{categoryLabel(dish.category)}</span>
                 </span>
-                <span className="text-sm font-semibold text-ink">{formatPrice(pizza.price)}</span>
+                <span className="text-sm font-semibold text-ink">{formatPrice(dish.price)}</span>
               </button>
             </li>
           ))}
           {results.length === 0 && (
-            <li className="px-2 py-6 text-center text-sm text-muted">No pizzas match that search.</li>
+            <li className="px-2 py-6 text-center text-sm text-muted">{t("searchEmpty")}</li>
           )}
         </ul>
       </div>

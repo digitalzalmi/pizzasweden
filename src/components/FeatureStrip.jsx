@@ -2,6 +2,7 @@ import { GiWheat, GiPizzaSlice } from "react-icons/gi";
 import { IoFlashOutline } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
 import { useContent } from "../context/ContentContext";
+import { useT } from "../i18n";
 import SectionReveal from "./SectionReveal";
 
 const iconMap = {
@@ -13,8 +14,9 @@ const iconMap = {
 
 export default function FeatureStrip() {
   const { features } = useContent();
+  const { t, L } = useT();
   return (
-    <SectionReveal className="bg-cream" variant="up" aria-label="Why guests choose Pizza House">
+    <SectionReveal className="bg-cream" variant="up" aria-label={t("featuresAria")}>
       <div className="border-y border-ink/10 bg-paper">
         <div className="container-site grid grid-cols-1 divide-y divide-ink/10 sm:grid-cols-2 sm:divide-x lg:grid-cols-4 lg:divide-y-0">
           {features.map((feature) => {
@@ -25,8 +27,8 @@ export default function FeatureStrip() {
                   <Icon size={15} aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-xs font-bold tracking-wide text-ink uppercase">{feature.title}</p>
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted sm:text-[0.8rem]">{feature.description}</p>
+                  <p className="text-xs font-bold tracking-wide text-ink uppercase">{L(feature, "title")}</p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted sm:text-[0.8rem]">{L(feature, "description")}</p>
                 </div>
               </article>
             );

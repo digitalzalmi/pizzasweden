@@ -58,7 +58,7 @@ function LoginForm({ onSuccess }) {
   return (
     <main className="grid min-h-screen place-items-center bg-ink px-4 text-cream">
       <form onSubmit={submit} className="w-full max-w-md rounded-[1.6rem] bg-paper p-6 text-ink shadow-2xl sm:p-8">
-        <p className="text-[0.72rem] font-bold tracking-[0.22em] text-tomato uppercase">Pizza House</p>
+        <p className="text-[0.72rem] font-bold tracking-[0.22em] text-tomato uppercase">Slice of Prima</p>
         <h1 className="font-display mt-2 text-3xl">Owner login</h1>
         <p className="mt-2 text-sm text-muted">Change photos, prices, hours, and offers from this panel.</p>
         <label className="mt-6 block text-sm font-semibold">
@@ -128,7 +128,7 @@ function AdminShell({ onLogout }) {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line bg-ink px-4 py-3 text-cream">
+      <header className="sticky top-0 z-30 flex min-h-[4.5rem] items-center justify-between border-b border-line bg-ink px-4 py-3 text-cream">
         <div className="flex items-center gap-3">
           <button
             type="button"
@@ -140,7 +140,7 @@ function AdminShell({ onLogout }) {
           </button>
           <div>
             <p className="text-[0.65rem] tracking-[0.18em] text-gold uppercase">Owner panel</p>
-            <p className="font-display text-lg leading-tight">Pizza House</p>
+            <p className="font-display text-lg leading-tight">Slice of Prima</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -223,8 +223,28 @@ function AdminShell({ onLogout }) {
   );
 }
 
+function adminCategoryId(category) {
+  return `admin-cat-${String(category)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+}
+
 function MenuPanel({ draft, setDraft, upload }) {
   const [openId, setOpenId] = useState(draft.menu[0]?.id ?? null);
+  const [newCategory, setNewCategory] = useState("");
+  const [categoryError, setCategoryError] = useState("");
+  const categories = (draft.menuCategories || []).filter((item) => item !== "All");
+
+  const sections = categories.map((category) => ({
+    category,
+    items: (draft.menu || []).filter((item) => item.category === category),
+  }));
+
+  const uncategorized = (draft.menu || []).filter((item) => !categories.includes(item.category));
+  if (uncategorized.length) {
+    sections.push({ category: "Other", items: uncategorized });
+  }
 
   function updatePizza(id, patch) {
     setDraft((current) => ({
@@ -233,15 +253,14 @@ function MenuPanel({ draft, setDraft, upload }) {
     }));
   }
 
-  function addPizza() {
+  function addPizza(category = categories[0] || "Pizza") {
     const id = Date.now();
     const pizza = {
       id,
-      name: "New pizza",
-      category: "Classic",
+      name: "New item",
+      category,
       description: "",
-      price: 899,
-      sizes: { small: 699, medium: 899, large: 1199 },
+      price: 99,
       image: "/images/hero.jpg",
       badge: "",
       ingredients: [],
@@ -250,11 +269,65 @@ function MenuPanel({ draft, setDraft, upload }) {
     };
     setDraft((current) => ({ ...current, menu: [pizza, ...current.menu] }));
     setOpenId(id);
+    requestAnimationFrame(() => {
+      document.getElementById(adminCategoryId(category))?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function addCategory(event) {
+    event?.preventDefault?.();
+    const name = newCategory.trim().replace(/\s+/g, " ");
+    if (!name) {
+      setCategoryError("Enter a category name.");
+      return;
+    }
+    if (name.toLowerCase() === "all" || name.toLowerCase() === "other") {
+      setCategoryError(`“${name}” is reserved. Choose another name.`);
+      return;
+    }
+    const exists = (draft.menuCategories || []).some((item) => item.toLowerCase() === name.toLowerCase());
+    if (exists) {
+      setCategoryError(`“${name}” already exists.`);
+      return;
+    }
+    setDraft((current) => {
+      const list = current.menuCategories?.length ? [...current.menuCategories] : ["All"];
+      if (!list.includes("All")) list.unshift("All");
+      list.push(name);
+      return { ...current, menuCategories: list };
+    });
+    setNewCategory("");
+    setCategoryError("");
+    requestAnimationFrame(() => {
+      document.getElementById(adminCategoryId(name))?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  function removeCategory(category) {
+    const count = (draft.menu || []).filter((item) => item.category === category).length;
+    const message =
+      count > 0
+        ? `Remove “${category}” and move its ${count} item(s) to Other? You can reassign them afterward.`
+        : `Remove empty category “${category}”?`;
+    if (!window.confirm(message)) return;
+
+    const fallback = categories.find((item) => item !== category) || "Pizza";
+    setDraft((current) => ({
+      ...current,
+      menuCategories: (current.menuCategories || []).filter((item) => item !== category),
+      menu: (current.menu || []).map((item) =>
+        item.category === category ? { ...item, category: fallback } : item,
+      ),
+    }));
   }
 
   function removePizza(id) {
-    if (!window.confirm("Remove this pizza from the menu?")) return;
+    if (!window.confirm("Remove this item from the menu?")) return;
     setDraft((current) => ({ ...current, menu: current.menu.filter((pizza) => pizza.id !== id) }));
+  }
+
+  function jumpTo(category) {
+    document.getElementById(adminCategoryId(category))?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
@@ -262,110 +335,182 @@ function MenuPanel({ draft, setDraft, upload }) {
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="font-display text-3xl">Menu & prices</h1>
-          <p className="mt-1 text-sm text-muted">Add pizzas, swap photos, and set small / medium / large prices in SEK.</p>
+          <p className="mt-1 text-sm text-muted">
+            Items are grouped by category. Add a new category below, jump to a section, then edit items there.
+          </p>
         </div>
-        <button type="button" className="btn btn-ink" onClick={addPizza}>
-          Add pizza
+        <button type="button" className="btn btn-ink" onClick={() => addPizza()}>
+          Add item
         </button>
       </div>
-      <ul className="mt-6 space-y-4">
-        {draft.menu.map((pizza) => (
-          <li key={pizza.id} className="overflow-hidden rounded-2xl border border-line bg-cream">
+
+      <form
+        onSubmit={addCategory}
+        className="mt-5 rounded-2xl border border-line bg-cream p-4"
+      >
+        <p className="text-sm font-semibold text-ink">Add category</p>
+        <p className="mt-1 text-xs text-muted">Creates a new section on this page and a filter on the public menu. Press Save changes when done.</p>
+        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <input
+            type="text"
+            value={newCategory}
+            placeholder="e.g. Drinks, Desserts, Kids Menu"
+            className="w-full flex-1 rounded-xl border border-line bg-paper px-3 py-2.5 text-sm outline-none focus:border-gold"
+            onChange={(event) => {
+              setNewCategory(event.target.value);
+              if (categoryError) setCategoryError("");
+            }}
+          />
+          <button type="submit" className="btn btn-gold shrink-0">
+            Add category
+          </button>
+        </div>
+        {categoryError ? <p className="mt-2 text-sm text-tomato">{categoryError}</p> : null}
+      </form>
+
+      <nav
+        className="sticky top-[4.5rem] z-20 mt-5 rounded-2xl border border-line bg-paper px-3 py-3 shadow-[0_8px_24px_rgba(22,19,17,0.08)]"
+        aria-label="Jump to menu category"
+      >
+        <p className="mb-2 text-[0.65rem] font-bold tracking-[0.14em] text-muted uppercase">Jump to category</p>
+        <div className="flex gap-2 overflow-x-auto pb-0.5 no-scrollbar">
+          {sections.map(({ category, items }) => (
             <button
+              key={category}
               type="button"
-              className="flex w-full items-center gap-3 p-3 text-left"
-              onClick={() => setOpenId((current) => (current === pizza.id ? null : pizza.id))}
+              className="shrink-0 rounded-full border border-ink bg-ink px-3.5 py-2 text-xs font-semibold text-cream hover:bg-ink-soft"
+              onClick={() => jumpTo(category)}
             >
-              <img src={pizza.image} alt="" className="h-14 w-14 rounded-xl object-cover" />
-              <div className="min-w-0 flex-1">
-                <p className="font-semibold">{pizza.name}</p>
+              {category}
+              <span className="ml-1.5 text-cream/60">({items.length})</span>
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      <div className="mt-8 space-y-10">
+        {sections.map(({ category, items }) => (
+          <div key={category} id={adminCategoryId(category)} className="scroll-mt-[9.5rem]">
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-3 border-b border-line pb-3">
+              <div>
+                <h2 className="font-display text-2xl text-ink">{category}</h2>
                 <p className="text-sm text-muted">
-                  {pizza.category} · {formatPrice(pizza.sizes?.medium || pizza.price)} · {pizza.available ? "On the menu" : "Sold out"}
+                  {items.length === 1 ? "1 item in this section" : `${items.length} items in this section`}
                 </p>
               </div>
-            </button>
-            {openId === pizza.id && (
-              <div className="grid gap-4 border-t border-line p-4 md:grid-cols-2">
-                <Field label="Name" value={pizza.name} onChange={(value) => updatePizza(pizza.id, { name: value })} />
-                <label className="block text-sm font-semibold">
-                  Category
-                  <select
-                    className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-2.5"
-                    value={pizza.category}
-                    onChange={(event) => updatePizza(pizza.id, { category: event.target.value })}
+              {category !== "Other" ? (
+                <div className="flex flex-wrap gap-2">
+                  <button type="button" className="btn btn-line" onClick={() => addPizza(category)}>
+                    Add to {category}
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded-full border border-tomato/30 px-3 py-2 text-xs font-semibold text-tomato hover:bg-tomato/10"
+                    onClick={() => removeCategory(category)}
                   >
-                    {draft.menuCategories.filter((item) => item !== "All").map((item) => (
-                      <option key={item}>{item}</option>
-                    ))}
-                  </select>
-                </label>
-                <label className="md:col-span-2 block text-sm font-semibold">
-                  Description
-                  <textarea
-                    rows={3}
-                    className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-2.5"
-                    value={pizza.description}
-                    onChange={(event) => updatePizza(pizza.id, { description: event.target.value })}
-                  />
-                </label>
-                <Field
-                  label="Small price (SEK)"
-                  type="number"
-                  value={pizza.sizes?.small ?? ""}
-                  onChange={(value) =>
-                    updatePizza(pizza.id, {
-                      sizes: { ...pizza.sizes, small: Number(value) || 0 },
-                      price: pizza.sizes?.medium || pizza.price,
-                    })
-                  }
-                />
-                <Field
-                  label="Medium price (SEK)"
-                  type="number"
-                  value={pizza.sizes?.medium ?? pizza.price}
-                  onChange={(value) => {
-                    const medium = Number(value) || 0;
-                    updatePizza(pizza.id, {
-                      sizes: { ...pizza.sizes, medium },
-                      price: medium,
-                    });
-                  }}
-                />
-                <Field
-                  label="Large price (SEK)"
-                  type="number"
-                  value={pizza.sizes?.large ?? ""}
-                  onChange={(value) => updatePizza(pizza.id, { sizes: { ...pizza.sizes, large: Number(value) || 0 } })}
-                />
-                <Field label="Badge (Popular, New, Spicy…)" value={pizza.badge || ""} onChange={(value) => updatePizza(pizza.id, { badge: value })} />
-                <Field
-                  label="Ingredients (comma separated)"
-                  value={(pizza.ingredients || []).join(", ")}
-                  onChange={(value) =>
-                    updatePizza(pizza.id, {
-                      ingredients: value.split(",").map((item) => item.trim()).filter(Boolean),
-                    })
-                  }
-                />
-                <ImageUpload label="Pizza photo" value={pizza.image} onChange={(image) => updatePizza(pizza.id, { image })} upload={upload} />
-                <label className="flex items-center gap-2 text-sm font-semibold">
-                  <input
-                    type="checkbox"
-                    checked={pizza.available}
-                    onChange={(event) => updatePizza(pizza.id, { available: event.target.checked })}
-                  />
-                  Available on the menu
-                </label>
-                <div className="md:col-span-2">
-                  <button type="button" className="text-sm font-semibold text-tomato" onClick={() => removePizza(pizza.id)}>
-                    Remove pizza
+                    Remove category
                   </button>
                 </div>
-              </div>
+              ) : null}
+            </div>
+
+            {items.length === 0 ? (
+              <p className="rounded-2xl border border-dashed border-line bg-cream px-4 py-8 text-center text-sm text-muted">
+                No items here yet. Click “Add to {category}” to create the first one.
+              </p>
+            ) : (
+              <ul className="space-y-3">
+                {items.map((pizza) => (
+                  <li key={pizza.id} className="overflow-hidden rounded-2xl border border-line bg-cream">
+                    <button
+                      type="button"
+                      className="flex w-full items-center gap-3 p-3 text-left"
+                      onClick={() => setOpenId((current) => (current === pizza.id ? null : pizza.id))}
+                    >
+                      <img src={pizza.image} alt="" className="h-14 w-14 rounded-xl object-cover" />
+                      <div className="min-w-0 flex-1">
+                        <p className="font-semibold">{pizza.name}</p>
+                        <p className="text-sm text-muted">
+                          {formatPrice(pizza.price)} · {pizza.available ? "On the menu" : "Sold out"}
+                          {pizza.nameSv ? ` · SV: ${pizza.nameSv}` : ""}
+                        </p>
+                      </div>
+                      <span className="text-xs font-semibold text-muted">{openId === pizza.id ? "Close" : "Edit"}</span>
+                    </button>
+                    {openId === pizza.id && (
+                      <div className="grid gap-4 border-t border-line p-4 md:grid-cols-2">
+                        <Field label="Name (English)" value={pizza.name} onChange={(value) => updatePizza(pizza.id, { name: value })} />
+                        <Field label="Name (Swedish)" value={pizza.nameSv || ""} onChange={(value) => updatePizza(pizza.id, { nameSv: value })} />
+                        <label className="block text-sm font-semibold">
+                          Category
+                          <select
+                            className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-2.5"
+                            value={pizza.category}
+                            onChange={(event) => updatePizza(pizza.id, { category: event.target.value })}
+                          >
+                            {categories.map((item) => (
+                              <option key={item}>{item}</option>
+                            ))}
+                          </select>
+                        </label>
+                        <Field
+                          label="Price (SEK)"
+                          type="number"
+                          value={pizza.price ?? ""}
+                          onChange={(value) => updatePizza(pizza.id, { price: Number(value) || 0 })}
+                        />
+                        <label className="md:col-span-2 block text-sm font-semibold">
+                          Description (English)
+                          <textarea
+                            rows={3}
+                            className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-2.5"
+                            value={pizza.description}
+                            onChange={(event) => updatePizza(pizza.id, { description: event.target.value })}
+                          />
+                        </label>
+                        <label className="md:col-span-2 block text-sm font-semibold">
+                          Description (Swedish)
+                          <textarea
+                            rows={3}
+                            className="mt-2 w-full rounded-xl border border-line bg-paper px-3 py-2.5"
+                            value={pizza.descriptionSv || ""}
+                            onChange={(event) => updatePizza(pizza.id, { descriptionSv: event.target.value })}
+                          />
+                        </label>
+                        <Field label="Badge EN (Popular, New…)" value={pizza.badge || ""} onChange={(value) => updatePizza(pizza.id, { badge: value })} />
+                        <Field label="Badge SV (Populär, Nyhet…)" value={pizza.badgeSv || ""} onChange={(value) => updatePizza(pizza.id, { badgeSv: value })} />
+                        <Field
+                          label="Ingredients (comma separated)"
+                          value={(pizza.ingredients || []).join(", ")}
+                          onChange={(value) =>
+                            updatePizza(pizza.id, {
+                              ingredients: value.split(",").map((item) => item.trim()).filter(Boolean),
+                            })
+                          }
+                        />
+                        <ImageUpload label="Item photo" value={pizza.image} onChange={(image) => updatePizza(pizza.id, { image })} upload={upload} />
+                        <label className="flex items-center gap-2 text-sm font-semibold">
+                          <input
+                            type="checkbox"
+                            checked={pizza.available}
+                            onChange={(event) => updatePizza(pizza.id, { available: event.target.checked })}
+                          />
+                          Available on the menu
+                        </label>
+                        <div className="md:col-span-2">
+                          <button type="button" className="text-sm font-semibold text-tomato" onClick={() => removePizza(pizza.id)}>
+                            Remove item
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
@@ -575,14 +720,17 @@ function ShopPanel({ draft, setDraft }) {
     <section className="space-y-10">
       <div>
         <h1 className="font-display text-3xl">Shop details</h1>
-        <p className="mt-1 text-sm text-muted">Name, phone, hours, address, and about text.</p>
+        <p className="mt-1 text-sm text-muted">Name, phone, hours, address, and about text in English and Swedish.</p>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <Field label="Brand name" value={restaurant.name} onChange={(value) => update({ name: value })} />
         <Field label="Short name" value={restaurant.shortName} onChange={(value) => update({ shortName: value })} />
-        <Field label="Hero label" value={restaurant.heroLabel} onChange={(value) => update({ heroLabel: value })} />
-        <Field label="Tagline" textarea value={restaurant.tagline} onChange={(value) => update({ tagline: value })} />
-        <Field label="Hero support text" textarea value={restaurant.heroSupport} onChange={(value) => update({ heroSupport: value })} />
+        <Field label="Hero label (EN)" value={restaurant.heroLabel} onChange={(value) => update({ heroLabel: value })} />
+        <Field label="Hero label (SV)" value={restaurant.heroLabelSv || ""} onChange={(value) => update({ heroLabelSv: value })} />
+        <Field label="Tagline (EN)" textarea value={restaurant.tagline} onChange={(value) => update({ tagline: value })} />
+        <Field label="Tagline (SV)" textarea value={restaurant.taglineSv || ""} onChange={(value) => update({ taglineSv: value })} />
+        <Field label="Hero support (EN)" textarea value={restaurant.heroSupport} onChange={(value) => update({ heroSupport: value })} />
+        <Field label="Hero support (SV)" textarea value={restaurant.heroSupportSv || ""} onChange={(value) => update({ heroSupportSv: value })} />
         <Field
           label="Phone"
           value={restaurant.phoneDisplay}
@@ -596,20 +744,33 @@ function ShopPanel({ draft, setDraft }) {
         <Field label="Email" value={restaurant.email} onChange={(value) => update({ email: value })} />
         <Field label="Address line 1" value={restaurant.addressLine1} onChange={(value) => update({ addressLine1: value })} />
         <Field label="Address line 2" value={restaurant.addressLine2} onChange={(value) => update({ addressLine2: value })} />
-        <Field label="Hours title" value={restaurant.hoursTitle} onChange={(value) => update({ hoursTitle: value })} />
-        <Field label="Hours time" value={restaurant.hoursTime} onChange={(value) => update({ hoursTime: value })} />
-        <Field label="Hours note" value={restaurant.hoursNote} onChange={(value) => update({ hoursNote: value })} />
+        <Field label="Hours title (EN)" value={restaurant.hoursTitle} onChange={(value) => update({ hoursTitle: value })} />
+        <Field label="Hours title (SV)" value={restaurant.hoursTitleSv || ""} onChange={(value) => update({ hoursTitleSv: value })} />
+        <Field label="Hours time (EN)" value={restaurant.hoursTime} onChange={(value) => update({ hoursTime: value })} />
+        <Field label="Hours time (SV)" value={restaurant.hoursTimeSv || ""} onChange={(value) => update({ hoursTimeSv: value })} />
+        <Field label="Hours note (EN)" value={restaurant.hoursNote} onChange={(value) => update({ hoursNote: value })} />
+        <Field label="Hours note (SV)" value={restaurant.hoursNoteSv || ""} onChange={(value) => update({ hoursNoteSv: value })} />
         <Field label="Google Maps URL" value={restaurant.mapsUrl} onChange={(value) => update({ mapsUrl: value })} />
-        <Field label="About title" value={restaurant.aboutTitle} onChange={(value) => update({ aboutTitle: value })} />
-        <Field label="About lead" textarea value={restaurant.aboutLead} onChange={(value) => update({ aboutLead: value })} />
+        <Field label="About title (EN)" value={restaurant.aboutTitle} onChange={(value) => update({ aboutTitle: value })} />
+        <Field label="About title (SV)" value={restaurant.aboutTitleSv || ""} onChange={(value) => update({ aboutTitleSv: value })} />
+        <Field label="About lead (EN)" textarea value={restaurant.aboutLead} onChange={(value) => update({ aboutLead: value })} />
+        <Field label="About lead (SV)" textarea value={restaurant.aboutLeadSv || ""} onChange={(value) => update({ aboutLeadSv: value })} />
         <Field
-          label="About paragraphs (one per line)"
+          label="About paragraphs EN (blank line between)"
           textarea
           value={(restaurant.aboutBody || []).join("\n\n")}
           onChange={(value) => update({ aboutBody: value.split(/\n\s*\n/).map((item) => item.trim()).filter(Boolean) })}
         />
-        <Field label="Footer blurb" textarea value={restaurant.footerBlurb} onChange={(value) => update({ footerBlurb: value })} />
-        <Field label="Copyright line" value={restaurant.copyright} onChange={(value) => update({ copyright: value })} />
+        <Field
+          label="About paragraphs SV (blank line between)"
+          textarea
+          value={(restaurant.aboutBodySv || []).join("\n\n")}
+          onChange={(value) => update({ aboutBodySv: value.split(/\n\s*\n/).map((item) => item.trim()).filter(Boolean) })}
+        />
+        <Field label="Footer blurb (EN)" textarea value={restaurant.footerBlurb} onChange={(value) => update({ footerBlurb: value })} />
+        <Field label="Footer blurb (SV)" textarea value={restaurant.footerBlurbSv || ""} onChange={(value) => update({ footerBlurbSv: value })} />
+        <Field label="Copyright (EN)" value={restaurant.copyright} onChange={(value) => update({ copyright: value })} />
+        <Field label="Copyright (SV)" value={restaurant.copyrightSv || ""} onChange={(value) => update({ copyrightSv: value })} />
       </div>
 
       <div className="rounded-2xl border border-line bg-cream p-5">

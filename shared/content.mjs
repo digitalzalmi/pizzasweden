@@ -18,6 +18,17 @@ export function syncDerivedFields(content) {
   restaurant.phoneDisplay = phone;
   restaurant.phoneTel = String(phone).replace(/[^\d+]/g, "");
   content.restaurant = restaurant;
+
+  if (Array.isArray(content.menu)) {
+    content.menu = content.menu.map((item) => {
+      const next = { ...item };
+      if (next.price == null && next.sizes?.medium != null) next.price = next.sizes.medium;
+      delete next.sizes;
+      if (!Array.isArray(next.ingredients)) next.ingredients = [];
+      return next;
+    });
+  }
+
   return content;
 }
 

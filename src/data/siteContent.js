@@ -3,7 +3,7 @@ import { menu, menuCategories } from "./menu.js";
 import { heroSlides, houseSlides, offerSlides } from "./banners.js";
 import { images } from "./images.js";
 import { offers } from "./offers.js";
-import { testimonials, testimonialsNote } from "./testimonials.js";
+import { testimonials, testimonialsNote, testimonialsNoteSv } from "./testimonials.js";
 import { features } from "./features.js";
 import { services } from "./services.js";
 
@@ -19,6 +19,7 @@ export function getDefaultContent() {
     offers,
     testimonials,
     testimonialsNote,
+    testimonialsNoteSv,
     features,
     services,
   });

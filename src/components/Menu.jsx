@@ -1,45 +1,50 @@
 import { useEffect, useMemo, useState } from "react";
 import { useUi } from "../context/UiContext";
 import { useContent } from "../context/ContentContext";
+import { useT } from "../i18n";
 import PizzaCard from "./PizzaCard";
 import SectionReveal from "./SectionReveal";
 
 export default function Menu() {
   const { menu, menuCategories } = useContent();
-  const { menuQuery, setMenuQuery, highlightId, setHighlightId } = useUi();
+  const { menuQuery, setMenuQuery, highlightId, setHighlightId, locale } = useUi();
+  const { t, categoryLabel, L } = useT();
   const [category, setCategory] = useState("All");
 
   useEffect(() => {
     if (highlightId) setCategory("All");
   }, [highlightId]);
 
-  const pizzas = useMemo(() => {
+  const items = useMemo(() => {
     const q = menuQuery.trim().toLowerCase();
-    return menu.filter((pizza) => {
-      const categoryMatch = category === "All" || pizza.category === category;
+    return menu.filter((dish) => {
+      const categoryMatch = category === "All" || dish.category === category;
+      const name = String(L(dish, "name") || dish.name || "").toLowerCase();
+      const description = String(L(dish, "description") || dish.description || "").toLowerCase();
+      const ingredients = dish.ingredients || [];
       const searchMatch =
         !q ||
-        pizza.name.toLowerCase().includes(q) ||
-        pizza.category.toLowerCase().includes(q) ||
-        pizza.ingredients.some((item) => item.toLowerCase().includes(q));
+        name.includes(q) ||
+        description.includes(q) ||
+        dish.category.toLowerCase().includes(q) ||
+        categoryLabel(dish.category).toLowerCase().includes(q) ||
+        ingredients.some((item) => item.toLowerCase().includes(q));
       return categoryMatch && searchMatch;
     });
-  }, [category, menuQuery, menu]);
+  }, [category, menuQuery, menu, L, categoryLabel]);
 
   return (
     <SectionReveal id="menu" className="scroll-mt-20 bg-cream py-10 sm:py-14" aria-labelledby="menu-heading">
       <div className="container-site">
         <div className="max-w-2xl">
-          <p className="text-[0.6rem] font-bold tracking-[0.2em] text-tomato uppercase sm:text-[0.65rem] sm:tracking-[0.24em]">Wood-fired list</p>
+          <p className="text-[0.6rem] font-bold tracking-[0.2em] text-tomato uppercase sm:text-[0.65rem] sm:tracking-[0.24em]">{t("menuEyebrow")}</p>
           <h2 id="menu-heading" className="font-display mt-2 text-[clamp(1.55rem,5.5vw,2.75rem)] text-ink">
-            OUR FAVORITE PIZZAS
+            {t("menuHeading")}
           </h2>
-          <p className="mt-3 max-w-xl text-sm text-muted">
-            Built on rested dough and a blistering oven. Filter by style and pick a size to see prices in Swedish kronor (SEK).
-          </p>
+          <p className="mt-3 max-w-xl text-sm text-muted">{t("menuIntro")}</p>
         </div>
 
-        <div className="mt-6 flex gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label="Pizza categories">
+        <div className="mt-6 flex gap-2 overflow-x-auto pb-2 no-scrollbar" role="tablist" aria-label={t("menuCategoriesAria")}>
           {menuCategories.map((item) => (
             <button
               key={item}
@@ -53,14 +58,14 @@ export default function Menu() {
               }`}
               onClick={() => setCategory(item)}
             >
-              {item}
+              {categoryLabel(item)}
             </button>
           ))}
         </div>
 
         {menuQuery && (
           <p className="mt-4 flex flex-wrap items-center gap-3 text-sm text-muted">
-            Showing results for “{menuQuery}”
+            {t("showingResults")} “{menuQuery}”
             <button
               type="button"
               className="font-semibold text-ink underline decoration-gold underline-offset-4"
@@ -69,20 +74,20 @@ export default function Menu() {
                 setHighlightId(null);
               }}
             >
-              Clear search
+              {t("clearSearch")}
             </button>
           </p>
         )}
 
-        <div className="menu-grid mt-6">
-          {pizzas.map((pizza) => (
-            <PizzaCard key={pizza.id} pizza={pizza} highlighted={highlightId === pizza.id} />
+        <div className="menu-grid mt-6" key={locale}>
+          {items.map((dish) => (
+            <PizzaCard key={dish.id} item={dish} highlighted={highlightId === dish.id} />
           ))}
         </div>
 
-        {pizzas.length === 0 && (
+        {items.length === 0 && (
           <p className="mt-10 rounded-2xl border border-dashed border-line bg-paper px-6 py-12 text-center text-muted">
-            Nothing in this category matches the current search. Try another filter.
+            {t("menuEmpty")}
           </p>
         )}
       </div>
